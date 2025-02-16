@@ -1,21 +1,9 @@
+import { FieldType } from 'src/common.types';
+
 export type Labels = {
   singular: string;
   plural: string;
 };
-
-export type DataType =
-  | 'TEXT'
-  | 'LARGE_TEXT'
-  | 'NUMERICAL'
-  | 'PHONE'
-  | 'MONETORY'
-  | 'CHECKBOX'
-  | 'SINGLE_OPTIONS'
-  | 'MULTIPLE_OPTIONS'
-  | 'DATE'
-  | 'TEXTBOX_LIST'
-  | 'FILE_UPLOAD'
-  | 'RADIO';
 
 export type Option = {
   key: string;
@@ -52,7 +40,7 @@ export type CustomObjectField = {
   acceptedFormats?: string;
   id: string;
   objectKey: string;
-  dataType: DataType;
+  dataType: FieldType;
   parentId: string;
   fieldKey: string;
   allowCustomOption?: boolean;

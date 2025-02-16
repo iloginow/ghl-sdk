@@ -352,3 +352,30 @@ export enum CountryCodes {
   Zambia = 'ZM',
   Zimbabwe = 'ZW',
 }
+
+export type FieldType =
+  | 'TEXT'
+  | 'LARGE_TEXT'
+  | 'NUMERICAL'
+  | 'PHONE'
+  | 'MONETORY'
+  | 'CHECKBOX'
+  | 'SINGLE_OPTIONS'
+  | 'MULTIPLE_OPTIONS'
+  | 'DATE'
+  | 'TEXTBOX_LIST'
+  | 'FILE_UPLOAD'
+  | 'RADIO';
+
+export type FileFormat =
+  | '.pdf'
+  | '.docx'
+  | '.doc'
+  | '.jpg'
+  | '.jpeg'
+  | '.png'
+  | '.gif'
+  | '.csv'
+  | '.xlsx'
+  | '.xls'
+  | 'all';
