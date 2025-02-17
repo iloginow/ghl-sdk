@@ -84,3 +84,8 @@ export type FormSearchParams = {
   skip?: number /** The skip of the forms (2) */;
   type?: string /** The type of the form (folder) */;
 };
+
+export type CustomFileInterface = {
+  blob: Blob;
+  customFieldId: string;
+};
