@@ -83,7 +83,7 @@ type MonthOfYear =
   | 'nov'
   | 'dec';
 
-export type CustomRRuleOptionsDTO = {
+export type CustomRRuleOptions = {
   intervalType: IntervalType /** Interval Type (monthly) */;
   interval: number /** Interval (2) */;
   startDate: string /** Start Date (2023-01-01) */;
@@ -98,9 +98,9 @@ export type CustomRRuleOptionsDTO = {
   daysBefore?: number /** Days Before (5) */;
 };
 
-export type ScheduleOptionsDTO = {
+export type ScheduleOptions = {
   executeAt: string /** Execute At (2023-01-01T20:45:00) */;
-  rrule: CustomRRuleOptionsDTO /** Custom RRule Options */;
+  rrule: CustomRRuleOptions /** Custom RRule Options */;
 };
 
 export enum CountryCodes {
