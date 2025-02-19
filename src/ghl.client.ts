@@ -2,7 +2,7 @@ import axios, { AxiosError, AxiosInstance, AxiosRequestConfig } from 'axios';
 
 export class GhlClient {
   private readonly baseUrl = 'https://services.leadconnectorhq.com';
-  protected axiosInstance: AxiosInstance;
+  private axiosInstance: AxiosInstance;
 
   constructor(accessToken?: string) {
     this.axiosInstance = axios.create({
@@ -35,8 +35,7 @@ export class GhlClient {
   }
 
   protected async get<T>(url: string, config?: AxiosRequestConfig): Promise<T> {
-    const res = await this.axiosInstance.get<T>(url, config);
-    return res.data;
+    return this.axiosInstance.get<T>(url, config) as T;
   }
 
   protected async post<T>(
@@ -45,11 +44,10 @@ export class GhlClient {
     config?: AxiosRequestConfig,
   ): Promise<T> {
     const defaultHeaders = { 'content-type': 'application/json' };
-    const res = await this.axiosInstance.post<T>(url, data, {
+    return this.axiosInstance.post<T>(url, data, {
       ...config,
       headers: { ...defaultHeaders, ...(config?.headers || {}) },
-    });
-    return res.data;
+    }) as T;
   }
 
   protected async put<T>(
@@ -58,11 +56,10 @@ export class GhlClient {
     config?: AxiosRequestConfig,
   ): Promise<T> {
     const defaultHeaders = { 'content-type': 'application/json' };
-    const res = await this.axiosInstance.put<T>(url, data, {
+    return this.axiosInstance.put<T>(url, data, {
       ...config,
       headers: { ...defaultHeaders, ...(config?.headers || {}) },
-    });
-    return res.data;
+    }) as T;
   }
 
   protected async patch<T>(
@@ -71,18 +68,16 @@ export class GhlClient {
     config?: AxiosRequestConfig,
   ): Promise<T> {
     const defaultHeaders = { 'content-type': 'application/json' };
-    const res = await this.axiosInstance.patch<T>(url, data, {
+    return this.axiosInstance.patch<T>(url, data, {
       ...config,
       headers: { ...defaultHeaders, ...(config?.headers || {}) },
-    });
-    return res.data;
+    }) as T;
   }
 
   protected async delete<T>(
     url: string,
     config?: AxiosRequestConfig,
   ): Promise<T> {
-    const res = await this.axiosInstance.delete<T>(url, config);
-    return res.data;
+    return this.axiosInstance.delete<T>(url, config) as T;
   }
 }
