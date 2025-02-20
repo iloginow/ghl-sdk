@@ -22,7 +22,7 @@ import {
 } from './conversations.types';
 import { SuccessDeleteResponse } from 'src/common.types';
 
-export default class ConversationsClient extends GhlClient {
+export class ConversationsClient extends GhlClient {
   constructor(accessToken: string) {
     super(accessToken);
   }
