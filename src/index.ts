@@ -16,6 +16,8 @@ import { LocationsClient } from './locations/locations.client';
 import { MediaClient } from './media/media.client';
 import { OAuthClient } from './oauth/oauth.client';
 import { ObjectsClient } from './objects/objects.client';
+import { PaymentsClient } from './payments/payments.client';
+import { ProductsClient } from './products/products.client';
 
 export {
   BlogsClient,
@@ -36,4 +38,6 @@ export {
   MediaClient,
   OAuthClient,
   ObjectsClient,
+  PaymentsClient,
+  ProductsClient,
 };
