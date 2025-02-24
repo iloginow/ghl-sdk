@@ -18,6 +18,7 @@ import { OAuthClient } from './oauth/oauth.client';
 import { ObjectsClient } from './objects/objects.client';
 import { PaymentsClient } from './payments/payments.client';
 import { ProductsClient } from './products/products.client';
+import { SaasClient } from './saas/saas.client';
 
 export {
   BlogsClient,
@@ -40,4 +41,5 @@ export {
   ObjectsClient,
   PaymentsClient,
   ProductsClient,
+  SaasClient,
 };
