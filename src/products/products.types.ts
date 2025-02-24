@@ -22,18 +22,21 @@ type PriceMeta = {
 type PriceType = 'one_time' | 'recurring';
 
 export type ProductSearchParams = {
+  locationId: string /** The unique identifier for the location */;
   limit?: number;
   offset?: number;
   search?: string;
 };
 
 export type ProductPriceSearchParams = {
+  locationId: string /** The unique identifier for the location */;
   ids?: string; // Comma separated
   limit?: number;
   offset?: number;
 };
 
 export type ProductPriceDto = {
+  locationId: string /** The unique identifier for the location */;
   name: string /** The name of the price */;
   type: PriceType /** The type of the price */;
   currency: string /** The currency of the price */;
@@ -120,6 +123,7 @@ export type ProductsDeleteResponse = {
 };
 
 export type ProductDto = {
+  locationId: string /** The unique identifier for the location */;
   name: string /** The name of the product */;
   description?: string /** The description of the product */;
   productType: ProductType /** The type of the product */;

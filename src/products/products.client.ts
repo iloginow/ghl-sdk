@@ -12,55 +12,47 @@ import {
 } from './products.types';
 
 export class ProductsClient extends GhlClient {
-  constructor(
-    accessToken: string,
-    private readonly locationId: string,
-  ) {
+  constructor(accessToken: string) {
     super(accessToken);
   }
 
-  public async findById(productId: string): Promise<Product> {
+  public async findById(
+    productId: string,
+    locationId: string,
+  ): Promise<Product> {
     return this.get<Product>(`/products/${productId}`, {
-      params: { locationId: this.locationId },
+      params: { locationId },
     });
   }
 
-  public async remove(productId: string): Promise<ProductsDeleteResponse> {
+  public async remove(
+    productId: string,
+    locationId: string,
+  ): Promise<ProductsDeleteResponse> {
     return this.delete<ProductsDeleteResponse>(`/products/${productId}`, {
-      params: { locationId: this.locationId },
+      params: { locationId },
     });
   }
 
   public async update(productId: string, dto: ProductDto): Promise<Product> {
-    return this.put<Product>(`/products/${productId}`, {
-      ...dto,
-      locationId: this.locationId,
-    });
+    return this.put<Product>(`/products/${productId}`, dto);
   }
 
   public async create(dto: ProductDto): Promise<Product> {
-    return this.post<Product>('/products', {
-      ...dto,
-      locationId: this.locationId,
-    });
+    return this.post<Product>('/products', dto);
   }
 
   public async find(
     params: ProductSearchParams,
   ): Promise<ListProductsResponse> {
-    return this.get<ListProductsResponse>('/products', {
-      params: { ...params, locationId: this.locationId },
-    });
+    return this.get<ListProductsResponse>('/products', { params });
   }
 
   public async createPrice(
     productId: string,
     dto: ProductPriceDto,
   ): Promise<ProductPrice> {
-    return this.post<ProductPrice>(`/products/${productId}/price`, {
-      ...dto,
-      locationId: this.locationId,
-    });
+    return this.post<ProductPrice>(`/products/${productId}/price`, dto);
   }
 
   public async findPrices(
@@ -68,16 +60,17 @@ export class ProductsClient extends GhlClient {
     params: ProductPriceSearchParams,
   ): Promise<ListProductPricesResponse> {
     return this.get<ListProductPricesResponse>(`/products/${productId}/price`, {
-      params: { ...params, locationId: this.locationId },
+      params,
     });
   }
 
   public async findPriceById(
     productId: string,
     priceId: string,
+    locationId: string,
   ): Promise<ProductPrice> {
     return this.get<ProductPrice>(`/products/${productId}/price/${priceId}`, {
-      params: { locationId: this.locationId },
+      params: { locationId },
     });
   }
 
@@ -86,19 +79,20 @@ export class ProductsClient extends GhlClient {
     priceId: string,
     dto: ProductPriceDto,
   ): Promise<ProductPrice> {
-    return this.put<ProductPrice>(`/products/${productId}/price/${priceId}`, {
-      ...dto,
-      locationId: this.locationId,
-    });
+    return this.put<ProductPrice>(
+      `/products/${productId}/price/${priceId}`,
+      dto,
+    );
   }
 
   public async removePrice(
     productId: string,
     priceId: string,
+    locationId: string,
   ): Promise<ProductsDeleteResponse> {
     return this.delete<ProductsDeleteResponse>(
       `/products/${productId}/price/${priceId}`,
-      { params: { locationId: this.locationId } },
+      { params: { locationId } },
     );
   }
 }
