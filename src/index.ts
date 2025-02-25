@@ -22,6 +22,7 @@ import { SaasClient } from './saas/saas.client';
 import { SnapshotsClient } from './snapshots/snapshots.client';
 import { SurveysClient } from './surveys/surveys.client';
 import { UsersClient } from './users/users.client';
+import { WorkflowsClient } from './workflows/workflows.client';
 
 export {
   BlogsClient,
@@ -48,4 +49,5 @@ export {
   SnapshotsClient,
   SurveysClient,
   UsersClient,
+  WorkflowsClient,
 };
