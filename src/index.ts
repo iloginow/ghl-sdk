@@ -56,6 +56,7 @@ export {
   WorkflowsClient,
 };
 
+export type * from './common.types';
 export type * from './blogs/blogs.types';
 export type * from './businesses/businesses.types';
 export type * from './calendars/calendars.types';
