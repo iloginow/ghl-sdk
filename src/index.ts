@@ -11,6 +11,7 @@ import { EmailsClient } from './emails/emails.client';
 import { FormsClient } from './forms/forms.client';
 import { FunnelsClient } from './funnels/funnels.client';
 import { InvoicesClient } from './invoices/invoices.client';
+import { LCEmailClient } from './lc-email/lc-email.client';
 import { LinksClient } from './links/links.client';
 import { LocationsClient } from './locations/locations.client';
 import { MediaClient } from './media/media.client';
@@ -38,6 +39,7 @@ export {
   FormsClient,
   FunnelsClient,
   InvoicesClient,
+  LCEmailClient,
   LinksClient,
   LocationsClient,
   MediaClient,
