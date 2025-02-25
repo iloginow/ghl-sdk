@@ -186,13 +186,13 @@ export type LocationTaskSearchParams = {
   businessId?: string /** Bussiness Id */;
 };
 
-type LocationTaskContact = {
+export type LocationTaskContact = {
   _id?: string /** The contact ID */;
   firstName?: string /** The first name of the contact */;
   lastName?: string /** The last name of the contact */;
 };
 
-type LocationTaskUser = {
+export type LocationTaskUser = {
   id?: string /** The user ID */;
   firstName?: string /** The first name of the user */;
   lastName?: string /** The last name of the user */;
@@ -220,7 +220,7 @@ export type ListLocationTasksResponse = {
   tasks: LocationTask[] /** The list of tasks */;
 };
 
-type LocationCustomFieldModel = 'contact' | 'opportunity';
+export type LocationCustomFieldModel = 'contact' | 'opportunity';
 
 export type LocationCustomField = {
   id?: string /** The custom field ID */;
@@ -251,7 +251,7 @@ export type LocationCustomFieldTextBoxListOptions = {
   prefillValue?: string /** The prefill value of the text box */;
 };
 
-type LocationCustomFieldType =
+export type LocationCustomFieldType =
   | 'TEXT'
   | 'LARGE_TEXT'
   | 'NUMERICAL'
@@ -268,7 +268,7 @@ type LocationCustomFieldType =
   | 'SIGNATURE'
   | 'RADIO';
 
-type LocationCustomFieldFileFormat =
+export type LocationCustomFieldFileFormat =
   | '.pdf'
   | '.doc'
   | '.docx'
@@ -305,7 +305,7 @@ export type LocationsFileUploadBody = {
   maxFiles?: number /** The max file limit */;
 };
 
-type LocationsFileuploadMeta = {
+export type LocationsFileuploadMeta = {
   fieldName?: string /** The field name */;
   originalname?: string /** The original name of the file */;
   encoding?: string /** The encoding of the file */;

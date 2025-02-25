@@ -1,25 +1,25 @@
-type RecurringInterval = 'day' | 'week' | 'month' | 'year';
+export type RecurringInterval = 'day' | 'week' | 'month' | 'year';
 
-type RecurringData = {
+export type RecurringData = {
   interval: RecurringInterval /** The interval of the recurring product */;
   intervalCount: number /** The number of intervals between each recurring product */;
 };
 
-type MembershipOffer = {
+export type MembershipOffer = {
   _id: string /** The ID of the membership offer */;
   label: string /** The label of the membership offer */;
   value: number /** The value of the membership offer */;
 };
 
-type InternalSource = 'agency_plan' | 'funnel' | 'membership';
+export type InternalSource = 'agency_plan' | 'funnel' | 'membership';
 
-type PriceMeta = {
+export type PriceMeta = {
   source: string /** The source of the price */;
   stripePriceId: string /** The Stripe price ID */;
   internalSource: InternalSource /** The internal source of the price */;
 };
 
-type PriceType = 'one_time' | 'recurring';
+export type PriceType = 'one_time' | 'recurring';
 
 export type ProductSearchParams = {
   locationId: string /** The unique identifier for the location */;
@@ -81,18 +81,18 @@ export type ListProductPricesResponse = {
   total: number /** The total number of prices */;
 };
 
-type ProductVariantOption = {
+export type ProductVariantOption = {
   id: string /** The unique identifier of the variant option */;
   name: string /** The name of the variant option */;
 };
 
-type ProductVariant = {
+export type ProductVariant = {
   id: string /** The unique identifier of the variant */;
   name: string /** The name of the variant */;
   options: ProductVariantOption[] /** An array of variant options associated with the variant */;
 };
 
-type ProductMedia = {
+export type ProductMedia = {
   id: string /** The unique identifier for the media */;
   title: string /** The title of the media file */;
   url: string /** The URL where the media file is stored */;
@@ -100,7 +100,7 @@ type ProductMedia = {
   isFeatured?: boolean /** Indicates whether the media is featured */;
 };
 
-type ProductType = 'DIGITAL' | 'PHYSICAL' | 'SERVICE';
+export type ProductType = 'DIGITAL' | 'PHYSICAL' | 'SERVICE';
 
 export type Product = {
   _id: string /** The unique identifier for the product */;
@@ -134,7 +134,7 @@ export type ProductDto = {
   variants: ProductVariant[] /** An array of variants for the product */;
 };
 
-type ListProductStats = {
+export type ListProductStats = {
   total: number /** The total number of products */;
 };
 

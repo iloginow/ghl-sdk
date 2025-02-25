@@ -161,7 +161,7 @@ export type OpportunitySearchParams = {
   status?: OpportunityStatus | 'all';
 };
 
-type PipelineStage = {
+export type PipelineStage = {
   id: string /** Stage ID */;
   name: string /** Stage name */;
   position: number /** Stage position */;

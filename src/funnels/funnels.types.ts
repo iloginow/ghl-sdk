@@ -1,4 +1,4 @@
-type FunnelRedirectAction = 'funnel' | 'website' | 'url' | 'all';
+export type FunnelRedirectAction = 'funnel' | 'website' | 'url' | 'all';
 
 export type FunnelSearchParams = {
   category?: string;
@@ -87,7 +87,7 @@ export type FunnelPageCountResponse = {
   count: number /** Number of pages */;
 };
 
-type FunnelStep = {
+export type FunnelStep = {
   id: string /** Step ID */;
   name: string /** Name of the step */;
   originId: string /** Origin ID */;
@@ -98,7 +98,7 @@ type FunnelStep = {
   url?: string /** URL of the step */;
 };
 
-type Funnel = {
+export type Funnel = {
   _id: string /** Funnel ID */;
   dateAdded: string /** Date added timestamp */;
   dateUpdated: string /** Date updated timestamp */;

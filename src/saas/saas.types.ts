@@ -19,7 +19,7 @@ export type EnableSaasSubscriptionDto = {
   companyId: string /** The ID of the company */;
 };
 
-type RebillingProduct =
+export type RebillingProduct =
   | 'contentAI'
   | 'workflow_premium_actions'
   | 'workflow_ai'
@@ -29,7 +29,7 @@ type RebillingProduct =
   | 'Phone'
   | 'Email';
 
-type RebillingConfig = {
+export type RebillingConfig = {
   optIn: boolean /** Whether the location is paused */;
   enabled: boolean /** Whether the location is paused */;
   markup: number /** Whether the location is paused */;

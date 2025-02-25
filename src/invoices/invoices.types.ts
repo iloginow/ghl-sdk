@@ -103,7 +103,7 @@ export type CreateInvoiceScheduleDto = CreateInvoiceTemplateDto & {
   liveMode: boolean /** Live Mode (true) */;
 };
 
-type InvoiceStatusOptions =
+export type InvoiceStatusOptions =
   | 'draft'
   | 'sent'
   | 'payment_processing'
@@ -211,7 +211,7 @@ export type Text2PayInvoiceDto = {
   discount?: InvoiceDiscount /** Discount */;
 };
 
-type Text2PayInvoice = {
+export type Text2PayInvoice = {
   _id: string /** Invoice Id (6578278e879ad2646715ba9c) */;
   status: InvoiceStatusOptions /** Invoice Status (draft) */;
   liveMode: boolean /** Live Mode (true) */;

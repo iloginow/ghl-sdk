@@ -6,7 +6,7 @@ export type ConvStartAfterArrayNumber = {
   startAfterDate: number[] /** Search to begin after the specified date - should contain the sort value of the last document ([1600854,1600851]) */;
 };
 
-enum ConversationMessageTypeNumbered {
+export enum ConversationMessageTypeNumbered {
   TYPE_CALL,
   TYPE_SMS,
   TYPE_EMAIL,
@@ -43,7 +43,7 @@ enum ConversationMessageTypeNumbered {
   TYPE_ACTIVITY,
 }
 
-type ConversationMessageTypeString =
+export type ConversationMessageTypeString =
   | 'TYPE_CALL'
   | 'TYPE_SMS'
   | 'TYPE_EMAIL'
@@ -79,7 +79,7 @@ type ConversationMessageTypeString =
   | 'TYPE_INSTAGRAM_COMMENT'
   | 'TYPE_ACTIVITY';
 
-type ConversationMessageType =
+export type ConversationMessageType =
   | 'SMS'
   | 'Email'
   | 'WhatsApp'
@@ -89,7 +89,7 @@ type ConversationMessageType =
   | 'Custom'
   | 'Live_Chat';
 
-type ConversationType =
+export type ConversationType =
   | 'TYPE_PHONE'
   | 'TYPE_EMAIL'
   | 'TYPE_FB_MESSENGER'
@@ -231,7 +231,7 @@ export type ListConversationMessagesResponse = {
   messages: ConversationMessageResponse[] /** List of messages */;
 };
 
-type ConversationReplyMode = 'reply' | 'reply_all';
+export type ConversationReplyMode = 'reply' | 'reply_all';
 
 export type ConversationMessageDto = {
   type: ConversationMessageType /** Type of the message (SMS) */;
@@ -261,7 +261,7 @@ export type SendConversationMessageResponse = {
   msg?: string /** Additional response message (Message queued successfully) */;
 };
 
-type ConversationCallStatus =
+export type ConversationCallStatus =
   | 'pending'
   | 'completed'
   | 'answered'
@@ -271,7 +271,7 @@ type ConversationCallStatus =
   | 'canceled'
   | 'voicemail';
 
-type ConversationCallData = {
+export type ConversationCallData = {
   to: string /** Phone number of the receiver (+15037081210) */;
   from: string /** Phone number of the dialer (+15037081210) */;
   status: ConversationCallStatus /** Call status (completed) */;
@@ -335,7 +335,7 @@ export type ConversationError = {
   message: string /** Error message (There was an error from the provider) */;
 };
 
-type ConversationUpdateMessageStatusOptions =
+export type ConversationUpdateMessageStatusOptions =
   | 'read'
   | 'pending'
   | 'delivered'

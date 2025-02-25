@@ -358,15 +358,15 @@ export type CalendarBaseDto = {
   lookBusyConfig?: CalendarLookBusyConfiguration /** Look Busy Configuration ({...}) */;
 };
 
-export interface CalendarUserAssignedDTO extends CalendarBaseDto {
+export type CalendarUserAssignedDTO = CalendarBaseDto & {
   teamMembers: CalendarTeamMember[] /** Team Members ([{...}]) */;
   calendarType: CalendarUserAssignedType /** Calendar Type (round_robin) */;
-}
+};
 
-export interface CalendarNonUserAssignedDTO extends CalendarBaseDto {
+export type CalendarNonUserAssignedDTO = CalendarBaseDto & {
   calendarType: CalendarNonUserAssignedType /** Calendar Type (event) */;
   meetingLocation: string /** Meeting Location (https://meet.google.com/yqp-gogr-wve) */;
-}
+};
 
 export type Calendar = CalendarUserAssignedDTO | CalendarNonUserAssignedDTO;
 
@@ -437,15 +437,15 @@ export type CalendarBaseCreateUpdateDto = {
   lookBusyConfig?: CalendarLookBusyConfiguration /** Look Busy Configuration ({...}) */;
 };
 
-export interface CalendarCreateUserAssignedDto extends CalendarBaseDto {
+export type CalendarCreateUserAssignedDto = CalendarBaseDto & {
   teamMembers: CalendarTeamMember[] /** Team Members ([{...}]) */;
   calendarType: CalendarUserAssignedType /** Calendar Type (round_robin) */;
-}
+};
 
-export interface CalendarCreateNonUserAssignedDto extends CalendarBaseDto {
+export type CalendarCreateNonUserAssignedDto = CalendarBaseDto & {
   calendarType: CalendarNonUserAssignedType /** Calendar Type (event) */;
   meetingLocation: string /** Meeting Location (https://meet.google.com/yqp-gogr-wve) */;
-}
+};
 
 export type CreateCalendarDto =
   | CalendarCreateUserAssignedDto

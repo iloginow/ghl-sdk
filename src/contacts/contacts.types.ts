@@ -1,4 +1,4 @@
-enum OpportunityStatus {
+export enum OpportunityStatus {
   Open = 'open',
   Won = 'won',
   Lost = 'lost',
@@ -34,18 +34,18 @@ export type ContactOpportunity = {
   status: OpportunityStatus /** The status of the opportunity (open) */;
 };
 
-type CustomField = {
+export type CustomField = {
   id: string /** The ID of the custom field (MgobCB14YMVKuE4Ka8p1) */;
   value: string /** The value of the custom field (name) */;
 };
 
-type ChannelDNDSettings = {
+export type ChannelDNDSettings = {
   status: string /** The status of the channel DND (active) */;
   message: string /** The message of the channel DND (message) */;
   code: string /** The code of the channel DND (code) */;
 };
 
-type DNDSettings = {
+export type DNDSettings = {
   Call: ChannelDNDSettings /** The DND settings for the Call channel */;
   Email: ChannelDNDSettings /** The DND settings for the Email channel; */;
   SMS: ChannelDNDSettings /** The DND settings for the SMS channel */;
@@ -181,7 +181,7 @@ export type ContactBulkUpateResponse = {
   ids: string[] /** The IDs of the contacts (["IDqvFHGColiyK6jiatuz","pOC0uJ97VYOKH2m3fkMD"]) */;
 };
 
-enum ContactDndStatus {
+export enum ContactDndStatus {
   Active = 'active',
   Inactive = 'inactive',
   Permanent = 'permanent',
@@ -263,7 +263,7 @@ export type CreateContactDto = ContactCreateSuccessfulResponseSchema & {
   locationId: string /** The ID of the location (ve9EPM428h8vShlRW1KT) */;
 };
 
-type ContactCreateSuccessfulResponseSchema = {
+export type ContactCreateSuccessfulResponseSchema = {
   id?: string /** The ID of the contact (102goXVW3lIExEQPOnd3) */;
   dateAdded?: string /** The date the contact was added (2024-06-06T18:54:57.221Z) */;
   dateUpdated?: string /** The date the contact was updated (2024-06-06T18:54:57.221Z) */;
@@ -439,434 +439,444 @@ export type SearchConfigDates = {
   lte?: string /** The less than or equal date (2021-06-23T03:30:00+01:00) */;
 };
 
-type SearchContactId = {
+export type SearchContactId = {
   field: 'id';
   operator: 'eq' | 'not_eq';
   value: string;
 };
 
-type SearchAddressValue = {
+export type SearchAddressValue = {
   field: 'address';
   operator: 'eq' | 'not_eq' | 'contains' | 'not_contains';
   value: string;
 };
 
-type SearchAddressExists = {
+export type SearchAddressExists = {
   field: 'address';
   operator: 'exists' | 'not_exists';
 };
 
-type SearchAddress = SearchAddressValue | SearchAddressExists;
+export type SearchAddress = SearchAddressValue | SearchAddressExists;
 
-type SearchAssignedToValue = {
+export type SearchAssignedToValue = {
   field: 'assignedTo';
   operator: 'eq' | 'not_eq';
   value: string;
 };
 
-type SearchAssignedToExists = {
+export type SearchAssignedToExists = {
   field: 'assignedTo';
   operator: 'exists' | 'not_exists';
 };
 
-type SearchAssignedTo = SearchAssignedToValue | SearchAssignedToExists;
+export type SearchAssignedTo = SearchAssignedToValue | SearchAssignedToExists;
 
-type SearchBusinessNameValue = {
+export type SearchBusinessNameValue = {
   field: 'businessName';
   operator: 'eq' | 'not_eq' | 'contains' | 'not_contains';
   value: string;
 };
 
-type SearchBusinessNameExists = {
+export type SearchBusinessNameExists = {
   field: 'businessName';
   operator: 'exists' | 'not_exists';
 };
 
-type SearchBusinessName = SearchBusinessNameValue | SearchBusinessNameExists;
+export type SearchBusinessName =
+  | SearchBusinessNameValue
+  | SearchBusinessNameExists;
 
-type SearchCityValue = {
+export type SearchCityValue = {
   field: 'city';
   operator: 'eq' | 'not_eq' | 'contains' | 'not_contains';
   value: string;
 };
 
-type SearchCityExists = {
+export type SearchCityExists = {
   field: 'city';
   operator: 'exists' | 'not_exists';
 };
 
-type SearchCity = SearchCityValue | SearchCityExists;
+export type SearchCity = SearchCityValue | SearchCityExists;
 
-type SearchCountryValue = {
+export type SearchCountryValue = {
   field: 'country';
   operator: 'eq' | 'not_eq';
   value: string;
 };
 
-type SearchCountryExists = {
+export type SearchCountryExists = {
   field: 'country';
   operator: 'exists' | 'not_exists';
 };
 
-type SearchCountry = SearchCountryValue | SearchCountryExists;
+export type SearchCountry = SearchCountryValue | SearchCountryExists;
 
-type SearchCompanyNameValue = {
+export type SearchCompanyNameValue = {
   field: 'companyName';
   operator: 'eq' | 'not_eq' | 'contains' | 'not_contains';
   value: string;
 };
 
-type SearchCompanyNameExists = {
+export type SearchCompanyNameExists = {
   field: 'companyName';
   operator: 'exists' | 'not_exists';
 };
 
-type SearchCompanyName = SearchCompanyNameValue | SearchCompanyNameExists;
+export type SearchCompanyName =
+  | SearchCompanyNameValue
+  | SearchCompanyNameExists;
 
-type SearchDateAddedRange = {
+export type SearchDateAddedRange = {
   field: 'dateAdded';
   operator: 'range';
   value: SearchConfigDates;
 };
 
-type SearchDateAddedExists = {
+export type SearchDateAddedExists = {
   field: 'dateAdded';
   operator: 'exists' | 'not_exists';
 };
 
-type SearchDateAdded = SearchDateAddedRange | SearchDateAddedExists;
+export type SearchDateAdded = SearchDateAddedRange | SearchDateAddedExists;
 
-type SearchDateUpdatedRange = {
+export type SearchDateUpdatedRange = {
   field: 'dateUpdated';
   operator: 'range';
   value: SearchConfigDates;
 };
 
-type SearchDateUpdatedExists = {
+export type SearchDateUpdatedExists = {
   field: 'dateUpdated';
   operator: 'exists' | 'not_exists';
 };
 
-type SearchDateUpdated = SearchDateUpdatedRange | SearchDateUpdatedExists;
+export type SearchDateUpdated =
+  | SearchDateUpdatedRange
+  | SearchDateUpdatedExists;
 
-type SearchDNDValue = {
+export type SearchDNDValue = {
   field: 'dnd';
   operator: 'eq' | 'not_eq';
   value: boolean;
 };
 
-type SearchDNDExists = {
+export type SearchDNDExists = {
   field: 'dnd';
   operator: 'exists' | 'not_exists';
 };
 
-type SearchDND = SearchDNDValue | SearchDNDExists;
+export type SearchDND = SearchDNDValue | SearchDNDExists;
 
-type SearchEmailValue = {
+export type SearchEmailValue = {
   field: 'email';
   operator: 'eq' | 'not_eq';
   value: string;
 };
 
-type SearchEmailExists = {
+export type SearchEmailExists = {
   field: 'email';
   operator: 'exists' | 'not_exists';
 };
 
-type SearchEmail = SearchEmailValue | SearchEmailExists;
+export type SearchEmail = SearchEmailValue | SearchEmailExists;
 
-type SearchFollowersValue = {
+export type SearchFollowersValue = {
   field: 'followers';
   operator: 'eq' | 'not_eq';
   value: string;
 };
 
-type SearchFollowersExists = {
+export type SearchFollowersExists = {
   field: 'followers';
   operator: 'exists' | 'not_exists';
 };
 
-type SearchFollowers = SearchFollowersValue | SearchFollowersExists;
+export type SearchFollowers = SearchFollowersValue | SearchFollowersExists;
 
-type SearchFirstNameLowerValue = {
+export type SearchFirstNameLowerValue = {
   field: 'firstNameLowerCase';
   operator: 'eq' | 'not_eq' | 'contains' | 'not_contains';
   value: string;
 };
 
-type SearchFirstNameLowerExists = {
+export type SearchFirstNameLowerExists = {
   field: 'firstNameLowerCase';
   operator: 'exists' | 'not_exists';
 };
 
-type SearchFirstNameLower =
+export type SearchFirstNameLower =
   | SearchFirstNameLowerValue
   | SearchFirstNameLowerExists;
 
-type SearchLastNameLowerValue = {
+export type SearchLastNameLowerValue = {
   field: 'lastNameLowerCase';
   operator: 'eq' | 'not_eq' | 'contains' | 'not_contains';
   value: string;
 };
 
-type SearchLastNameLowerExists = {
+export type SearchLastNameLowerExists = {
   field: 'lastNameLowerCase';
   operator: 'exists' | 'not_exists';
 };
 
-type SearchLastNameLower = SearchLastNameLowerValue | SearchLastNameLowerExists;
+export type SearchLastNameLower =
+  | SearchLastNameLowerValue
+  | SearchLastNameLowerExists;
 
-type SearchIsValidWhatsappValue = {
+export type SearchIsValidWhatsappValue = {
   field: 'isValidWhatsapp';
   operator: 'eq' | 'not_eq';
   value: boolean;
 };
 
-type SearchIsValidWhatsappExists = {
+export type SearchIsValidWhatsappExists = {
   field: 'isValidWhatsapp';
   operator: 'exists' | 'not_exists';
 };
 
-type SearchIsValidWhatsapp =
+export type SearchIsValidWhatsapp =
   | SearchIsValidWhatsappValue
   | SearchIsValidWhatsappExists;
 
-type SearchLastEmailClickedDateRange = {
+export type SearchLastEmailClickedDateRange = {
   field: 'lastEmailClickedDate';
   operator: 'range';
   value: SearchConfigDates;
 };
 
-type SearchLastEmailClickedDateExists = {
+export type SearchLastEmailClickedDateExists = {
   field: 'lastEmailClickedDate';
   operator: 'exists' | 'not_exists';
 };
 
-type SearchLastEmailClickedDate =
+export type SearchLastEmailClickedDate =
   | SearchLastEmailClickedDateRange
   | SearchLastEmailClickedDateExists;
 
-type SearchLastEmailOpenedDateRange = {
+export type SearchLastEmailOpenedDateRange = {
   field: 'lastEmailOpenedDate';
   operator: 'range';
   value: SearchConfigDates;
 };
 
-type SearchLastEmailOpenedDateExists = {
+export type SearchLastEmailOpenedDateExists = {
   field: 'lastEmailOpenedDate';
   operator: 'exists' | 'not_exists';
 };
 
-type SearchLastEmailOpenedDate =
+export type SearchLastEmailOpenedDate =
   | SearchLastEmailOpenedDateRange
   | SearchLastEmailOpenedDateExists;
 
-type SearchPhoneValue = {
+export type SearchPhoneValue = {
   field: 'phone';
   operator: 'eq' | 'not_eq' | 'contains' | 'not_contains';
   value: string /** Do not pass country code */;
 };
 
-type SearchPhoneExists = {
+export type SearchPhoneExists = {
   field: 'phone';
   operator: 'exists' | 'not_exists';
 };
 
-type SearchPhone = SearchPhoneValue | SearchPhoneExists;
+export type SearchPhone = SearchPhoneValue | SearchPhoneExists;
 
-type SearchPostalCodeValue = {
+export type SearchPostalCodeValue = {
   field: 'postalCode';
   operator: 'eq' | 'not_eq' | 'contains' | 'not_contains';
   value: string;
 };
 
-type SearchPostalCodeExists = {
+export type SearchPostalCodeExists = {
   field: 'postalCode';
   operator: 'exists' | 'not_exists';
 };
 
-type SearchPostalCode = SearchPostalCodeValue | SearchPostalCodeExists;
+export type SearchPostalCode = SearchPostalCodeValue | SearchPostalCodeExists;
 
-type SearchSourceValue = {
+export type SearchSourceValue = {
   field: 'source';
   operator: 'eq' | 'not_eq' | 'contains' | 'not_contains';
   value: string;
 };
 
-type SearchSourceExists = {
+export type SearchSourceExists = {
   field: 'source';
   operator: 'exists' | 'not_exists';
 };
 
-type SearchSource = SearchSourceValue | SearchSourceExists;
+export type SearchSource = SearchSourceValue | SearchSourceExists;
 
-type SearchStateValue = {
+export type SearchStateValue = {
   field: 'state';
   operator: 'eq' | 'not_eq' | 'contains' | 'not_contains';
   value: string;
 };
 
-type SearchStateExists = {
+export type SearchStateExists = {
   field: 'state';
   operator: 'exists' | 'not_exists';
 };
 
-type SearchState = SearchStateValue | SearchStateExists;
+export type SearchState = SearchStateValue | SearchStateExists;
 
-type SearchTagsValue = {
+export type SearchTagsValue = {
   field: 'tags';
   operator: 'eq' | 'not_eq' | 'contains' | 'not_contains';
   value: string[] /** contains any values included in array (OR Condition) */;
 };
 
-type SearchTagsExists = {
+export type SearchTagsExists = {
   field: 'tags';
   operator: 'exists' | 'not_exists';
 };
 
-type SearchTags = SearchTagsValue | SearchTagsExists;
+export type SearchTags = SearchTagsValue | SearchTagsExists;
 
-type SearchTimezoneValue = {
+export type SearchTimezoneValue = {
   field: 'timezone';
   operator: 'eq' | 'not_eq';
   value: string;
 };
 
-type SearchTimezoneExists = {
+export type SearchTimezoneExists = {
   field: 'timezone';
   operator: 'exists' | 'not_exists';
 };
 
-type SearchTimezone = SearchTimezoneValue | SearchTimezoneExists;
+export type SearchTimezone = SearchTimezoneValue | SearchTimezoneExists;
 
-type SearchContactTypeValue = {
+export type SearchContactTypeValue = {
   field: 'type';
   operator: 'eq' | 'not_eq';
   value: string;
 };
 
-type SearchContactTypeExists = {
+export type SearchContactTypeExists = {
   field: 'type';
   operator: 'exists' | 'not_exists';
 };
 
-type SearchContactType = SearchContactTypeValue | SearchContactTypeExists;
+export type SearchContactType =
+  | SearchContactTypeValue
+  | SearchContactTypeExists;
 
-type SearchValidEmailValue = {
+export type SearchValidEmailValue = {
   field: 'validEmail';
   operator: 'eq' | 'not_eq';
   value: boolean;
 };
 
-type SearchValidEmailExists = {
+export type SearchValidEmailExists = {
   field: 'validEmail';
   operator: 'exists' | 'not_exists';
 };
 
-type SearchValidEmail = SearchValidEmailValue | SearchValidEmailExists;
+export type SearchValidEmail = SearchValidEmailValue | SearchValidEmailExists;
 
-type SearchWebsiteValue = {
+export type SearchWebsiteValue = {
   field: 'website';
   operator: 'eq' | 'not_eq';
   value: string;
 };
 
-type SearchWebsiteExists = {
+export type SearchWebsiteExists = {
   field: 'website';
   operator: 'exists' | 'not_exists';
 };
 
-type SearchWebsite = SearchWebsiteValue | SearchWebsiteExists;
+export type SearchWebsite = SearchWebsiteValue | SearchWebsiteExists;
 
-type SearchLastAppointmentRange = {
+export type SearchLastAppointmentRange = {
   field: 'lastAppointment';
   operator: 'range';
   value: SearchConfigDates;
 };
 
-type SearchLastAppointmentExists = {
+export type SearchLastAppointmentExists = {
   field: 'lastAppointment';
   operator: 'exists' | 'not_exists';
 };
 
-type SearchLastAppointment =
+export type SearchLastAppointment =
   | SearchLastAppointmentRange
   | SearchLastAppointmentExists;
 
-type SearchActiveWorkflowsValue = {
+export type SearchActiveWorkflowsValue = {
   field: 'activeWorkflows';
   operator: 'eq' | 'not_eq';
   value: string;
 };
 
-type SearchActiveWorkflowsExists = {
+export type SearchActiveWorkflowsExists = {
   field: 'activeWorkflows';
   operator: 'exists' | 'not_exists';
 };
 
-type SearchActiveWorkflows =
+export type SearchActiveWorkflows =
   | SearchActiveWorkflowsValue
   | SearchActiveWorkflowsExists;
 
-type SearchFinishedWorkflowsValue = {
+export type SearchFinishedWorkflowsValue = {
   field: 'finishedWorkflows';
   operator: 'eq' | 'not_eq';
   value: string;
 };
 
-type SearchFinishedWorkflowsExists = {
+export type SearchFinishedWorkflowsExists = {
   field: 'finishedWorkflows';
   operator: 'exists' | 'not_exists';
 };
 
-type SearchFinishedWorkflows =
+export type SearchFinishedWorkflows =
   | SearchFinishedWorkflowsValue
   | SearchFinishedWorkflowsExists;
 
-type SearchPipelineIdValue = {
+export type SearchPipelineIdValue = {
   field: 'pipelineId';
   operator: 'eq' | 'not_eq';
   value: string;
 };
 
-type SearchPipelineIdExists = {
+export type SearchPipelineIdExists = {
   field: 'pipelineId';
   operator: 'exists' | 'not_exists';
 };
 
-type SearchPipelineId = SearchPipelineIdValue | SearchPipelineIdExists;
+export type SearchPipelineId = SearchPipelineIdValue | SearchPipelineIdExists;
 
-type SearchPipelineStageIdValue = {
+export type SearchPipelineStageIdValue = {
   field: 'pipelineStageId';
   operator: 'eq' | 'not_eq';
   value: string;
 };
 
-type SearchPipelineStageIdExists = {
+export type SearchPipelineStageIdExists = {
   field: 'pipelineStageId';
   operator: 'exists' | 'not_exists';
 };
 
-type SearchPipelineStageId =
+export type SearchPipelineStageId =
   | SearchPipelineStageIdValue
   | SearchPipelineStageIdExists;
 
-type SearchOpportunityStatusValue = {
+export type SearchOpportunityStatusValue = {
   field: 'status';
   operator: 'eq' | 'not_eq';
   value: string;
 };
 
-type SearchOpportunityStatusExists = {
+export type SearchOpportunityStatusExists = {
   field: 'status';
   operator: 'exists' | 'not_exists';
 };
 
-type SearchOpportunityStatus =
+export type SearchOpportunityStatus =
   | SearchOpportunityStatusValue
   | SearchOpportunityStatusExists;
 
-type SearchOpportunity = {
+export type SearchOpportunity = {
   field: 'opportunity';
   operator: 'nested';
   value: Array<
@@ -874,96 +884,96 @@ type SearchOpportunity = {
   >;
 };
 
-type SearchCustomFieldType1Value = {
+export type SearchCustomFieldType1Value = {
   field: string /** The key of the custom field superseeded with "customFields." followed by the custom field id */;
   operator: 'eq' | 'not_eq' | 'contains' | 'not_contains';
   value: string;
 };
 
-type SearchCustomFieldType1Exists = {
+export type SearchCustomFieldType1Exists = {
   field: string /** The key of the custom field superseeded with "customFields." followed by the custom field id */;
   operator: 'exists' | 'not_exists';
 };
 
-type SearchCustomFieldType1 =
+export type SearchCustomFieldType1 =
   | SearchCustomFieldType1Value
   | SearchCustomFieldType1Exists;
 
-type SearchCustomFieldType2Value = {
+export type SearchCustomFieldType2Value = {
   field: string /** The key of the custom field superseeded with "customFields." followed by the custom field id */;
   operator: 'eq' | 'not_eq';
   value: string;
 };
 
-type SearchCustomFieldType2Exists = {
+export type SearchCustomFieldType2Exists = {
   field: string /** The key of the custom field superseeded with "customFields." followed by the custom field id */;
   operator: 'exists' | 'not_exists';
 };
 
-type SearchCustomFieldType2 =
+export type SearchCustomFieldType2 =
   | SearchCustomFieldType2Value
   | SearchCustomFieldType2Exists;
 
-type SearchCustomFieldType3Value = {
+export type SearchCustomFieldType3Value = {
   field: string /** The key of the custom field superseeded with "customFields." followed by the custom field id */;
   operator: 'eq' | 'not_eq';
   value: number;
 };
 
-type SearchCustomFieldType3Exists = {
+export type SearchCustomFieldType3Exists = {
   field: string /** The key of the custom field superseeded with "customFields." followed by the custom field id */;
   operator: 'exists' | 'not_exists';
 };
 
-type SearchCustomFieldType3Range = {
+export type SearchCustomFieldType3Range = {
   field: string /** The key of the custom field superseeded with "customFields." followed by the custom field id */;
   operator: 'range';
   value: SearchConfigDates;
 };
 
-type SearchCustomFieldType3 =
+export type SearchCustomFieldType3 =
   | SearchCustomFieldType3Value
   | SearchCustomFieldType3Exists
   | SearchCustomFieldType3Range;
 
-type SearchCustomFieldType4Range = {
+export type SearchCustomFieldType4Range = {
   field: string /** The key of the custom field superseeded with "customFields." followed by the custom field id */;
   operator: 'range';
   value: SearchConfigDates;
 };
 
-type SearchCustomFieldType4Exists = {
+export type SearchCustomFieldType4Exists = {
   field: string /** The key of the custom field superseeded with "customFields." followed by the custom field id */;
   operator: 'exists' | 'not_exists';
 };
 
-type SearchCustomFieldType4 =
+export type SearchCustomFieldType4 =
   | SearchCustomFieldType4Range
   | SearchCustomFieldType4Exists;
 
-type SearchCustomFieldType5Value = {
+export type SearchCustomFieldType5Value = {
   field: string /** The key of the custom field superseeded with "customFields." followed by the custom field id */;
   operator: 'eq' | 'not_eq' | 'contains' | 'not_contains';
   value: string;
 };
 
-type SearchCustomFieldType5Exists = {
+export type SearchCustomFieldType5Exists = {
   field: string /** The key of the custom field superseeded with "customFields." followed by the custom field id */;
   operator: 'exists' | 'not_exists';
 };
 
-type SearchCustomFieldType5 =
+export type SearchCustomFieldType5 =
   | SearchCustomFieldType5Value
   | SearchCustomFieldType5Exists;
 
-type SearchCustomField =
+export type SearchCustomField =
   | SearchCustomFieldType1
   | SearchCustomFieldType2
   | SearchCustomFieldType3
   | SearchCustomFieldType4
   | SearchCustomFieldType5;
 
-type SearchFilterConfig =
+export type SearchFilterConfig =
   | SearchContactId
   | SearchAddress
   | SearchAssignedTo
@@ -996,12 +1006,12 @@ type SearchFilterConfig =
   | SearchOpportunity
   | SearchCustomField;
 
-type SearchFilter = {
+export type SearchFilter = {
   group?: 'AND' | 'OR';
   filters: SearchFilterConfig[];
 };
 
-type SearchSort = {
+export type SearchSort = {
   field: string;
   direction: 'asc' | 'desc';
 };

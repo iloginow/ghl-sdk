@@ -59,7 +59,7 @@ export type CreatePostDto = {
   metaData?: object /** Blog post meta data */;
 };
 
-type BlogsAuthorSocialsSchema = {
+export type BlogsAuthorSocialsSchema = {
   type: string /** Social media type */;
   url: string /** Social media URL */;
 };
@@ -68,7 +68,7 @@ export type CreatePostResponse = {
   data: CreatePostDto /** Created blog post */;
 };
 
-type BlogsAuthorsSchema = {
+export type BlogsAuthorsSchema = {
   socials?: BlogsAuthorSocialsSchema[] /** Author social media */;
   _id?: string /** Author ID */;
   name?: string /** Author name */;
@@ -85,7 +85,7 @@ export type ListAuthorsResponse = {
   traceId: string /** Trace ID */;
 };
 
-type BlogsCategorySchema = {
+export type BlogsCategorySchema = {
   _id: string /** Category ID */;
   label?: string /** Category label */;
   urlSlug?: string /** Category URL slug */;

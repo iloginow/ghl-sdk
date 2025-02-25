@@ -25,7 +25,7 @@ export type SuccededDeleteResponse = {
   succeded?: boolean /** Success Status (true) */;
 };
 
-type IntervalType =
+export type IntervalType =
   | 'yearly'
   | 'monthly'
   | 'weekly'
@@ -34,7 +34,7 @@ type IntervalType =
   | 'minutely'
   | 'secondly';
 
-type DayOfMonth =
+export type DayOfMonth =
   | -1
   | 1
   | 2
@@ -65,11 +65,11 @@ type DayOfMonth =
   | 27
   | 28;
 
-type DayOfWeek = 'mo' | 'tu' | 'we' | 'th' | 'fr' | 'sa' | 'su';
+export type DayOfWeek = 'mo' | 'tu' | 'we' | 'th' | 'fr' | 'sa' | 'su';
 
-type NumOfWeek = -1 | 1 | 2 | 3 | 4;
+export type NumOfWeek = -1 | 1 | 2 | 3 | 4;
 
-type MonthOfYear =
+export type MonthOfYear =
   | 'jan'
   | 'feb'
   | 'mar'

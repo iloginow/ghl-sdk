@@ -1,8 +1,8 @@
-type EmailType = 'html' | 'builder' | 'folder';
+export type EmailType = 'html' | 'builder' | 'folder';
 
-type EmailBuilderVersion = 1 | 2;
+export type EmailBuilderVersion = 1 | 2;
 
-type EmailImportProvider = 'mailchimp' | 'active_campaign' | 'kajabi';
+export type EmailImportProvider = 'mailchimp' | 'active_campaign' | 'kajabi';
 
 export type CreateEmailTemplateDto = {
   locationId: string /** The location ID of the email (ABCHkzuJQ8ZMd4Te84GK) */;

@@ -1,4 +1,4 @@
-type WhiteListProviderType = 'authorize-net' | 'nmi';
+export type WhiteListProviderType = 'authorize-net' | 'nmi';
 
 export type CreateWhiteLabelIntegrationProviderDto = {
   altId: string /** location Id / company Id based on altType */;
@@ -34,7 +34,7 @@ export type ListIntegrationProvidersResponse = {
   providers: PaymentIntegrationProvider[];
 };
 
-type OrderSourceMetaData = {
+export type OrderSourceMetaData = {
   domain?: string /** Domain of the source. */;
   pageId?: string /** Page id of the source. */;
   pageUrl?: string /** Page url of the source. */;
@@ -78,7 +78,7 @@ export type AmountSummary = {
   discount?: number /** Discount amount. */;
 };
 
-type OrderSourceType =
+export type OrderSourceType =
   | 'funnel'
   | 'website'
   | 'invoice'
@@ -95,7 +95,7 @@ type OrderSourceType =
   | 'payment_link'
   | 'external';
 
-type OrderSourceSubType =
+export type OrderSourceSubType =
   | 'one_step_order_form'
   | 'two_step_order_form'
   | 'upsell'
@@ -115,7 +115,7 @@ export type OrderSource = {
   meta: OrderSourceMetaData /** Meta content for the source of order. */;
 };
 
-type OrderContactSnapshot = {
+export type OrderContactSnapshot = {
   first_name?: string /** First name of the contact. */;
   last_name?: string /** Last name of the contact. */;
   email?: string /** Email of the contact. */;
@@ -124,12 +124,12 @@ type OrderContactSnapshot = {
   type?: string /** Type of the contact. */;
 };
 
-type OrderItemProduct = {
+export type OrderItemProduct = {
   name?: string /** Name of the product. */;
   productType?: string /** Type of the product. */;
 };
 
-type OrderItem = {
+export type OrderItem = {
   _id?: string /** Item id. */;
   authorizeAmount?: number /** Authorize amount. */;
   locationId?: string /** Location id. */;
@@ -138,12 +138,12 @@ type OrderItem = {
   product?: OrderItemProduct /** Product details of the item. */;
 };
 
-type OrderCoupon = {
+export type OrderCoupon = {
   _id?: string /** Coupon id. */;
   code?: string /** Coupon code. */;
 };
 
-type OrderMetaData = {
+export type OrderMetaData = {
   couponSessionExpired?: boolean /** Coupon session expired. */;
   [key: string]: any /** Any other meta content. */;
 };
@@ -197,7 +197,7 @@ export type PaymentsProductVariantSchema = {
   options: PaymentsProductVariantOptionSchema[] /** An array of options for the variant. */;
 };
 
-type PaymentProductMediaType = 'image' | 'video';
+export type PaymentProductMediaType = 'image' | 'video';
 
 export type PaymentProductMediaDto = {
   id: string /** The unique identifier for the media. */;
@@ -248,14 +248,14 @@ export type MembershipOffer = {
   value: string /** Membership offer value */;
 };
 
-type Inverval = 'day' | 'week' | 'month' | 'year';
+export type Inverval = 'day' | 'week' | 'month' | 'year';
 
 export type RecurringPayment = {
   inverval: Inverval /** The interval of the recurring product. */;
   intervalCount: number /** The interval count of the recurring product. */;
 };
 
-type PriceType = 'one_time' | 'recurring';
+export type PriceType = 'one_time' | 'recurring';
 
 export type PriceResponse = {
   _id: string /** The unique identifier for the price. */;
@@ -300,14 +300,14 @@ export type OrderFulfillmentResponse = {
   data: OrderFulfillmentData /** Fulfilled items */;
 };
 
-type TransactionChargeSnapshot = {
+export type TransactionChargeSnapshot = {
   id?: string /** Charge id for transaction. */;
   object?: string /** Object of the charge. */;
   account_country?: string /** Account country for the charge. */;
   account_name?: string /** Account name for the charge. */;
 };
 
-type TransactionMethods = {
+export type TransactionMethods = {
   [key: string]: {
     [key: string]: string;
   };
@@ -348,7 +348,7 @@ export type ListTransactionsResponse = {
   totalCount: number;
 };
 
-type TransactionPaymentProvider = {
+export type TransactionPaymentProvider = {
   type?: string /** Payment provider type */;
   connectedAccount?: {
     _id?: string /** Connected account id */;
@@ -356,7 +356,7 @@ type TransactionPaymentProvider = {
   };
 };
 
-type TransactionQboDetails = {
+export type TransactionQboDetails = {
   domain?: string /** Domain of the source. */;
   sparse?: boolean /** Sparse details. */;
   Id?: string /** Id of the transaction. */;
@@ -395,7 +395,7 @@ export type TransactionDetailsResponse = {
   traceId?: string /** Trace id of the transaction. */;
 };
 
-type SubscriptionSnapshot = {
+export type SubscriptionSnapshot = {
   status?: string /** Subscription status. */;
   status_update_time?: string /** Subscription status update time. */;
   id?: string /** Subscription id. */;
@@ -435,7 +435,7 @@ export type ListSubscriptionsResponse = {
   totalCount: number;
 };
 
-type SubscriptionCoupon = {
+export type SubscriptionCoupon = {
   _id?: string /** Coupon id. */;
   usageCount?: number /** Coupon usage count. */;
   altId?: string /** Coupon alt id. */;
@@ -446,17 +446,17 @@ type SubscriptionCoupon = {
   discountValue?: number /** Coupon discount value. */;
 };
 
-type SubscriptionSchedule = {
+export type SubscriptionSchedule = {
   collection?: string /** Collection of the schedule. */;
   id?: string /** Id of the schedule. */;
 };
 
-type SubscriptionAutoPayment = {
+export type SubscriptionAutoPayment = {
   customerId?: string /** Customer id for auto payment. */;
   paymentMethodId?: string /** Payment method id for auto payment. */;
 };
 
-type SubscriptionRecurringProduct = {
+export type SubscriptionRecurringProduct = {
   locationId?: string /** Location id for recurring product. */;
   funnel?: string /** Funnel id for recurring product. */;
   step?: string /** Step id for recurring product. */;
@@ -512,7 +512,7 @@ export type CustomIntegrationProviderConnectDetails = {
   };
 };
 
-type CustomIntegrationProviderLiveModeConnectDetails = {
+export type CustomIntegrationProviderLiveModeConnectDetails = {
   live: {
     apiKey: string /** API key for the custom provider */;
     publishableKey: string /** Publishable key for the custom provider */;

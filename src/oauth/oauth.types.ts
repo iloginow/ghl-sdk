@@ -172,7 +172,7 @@ export type CompanyScope =
 
 export type Scope = LocationScope | CompanyScope;
 
-type GetAccessCodeBaseSchema = {
+export type GetAccessCodeBaseSchema = {
   /**
    * USER ID - Represent user id of person who performed installation
    * @type {string}
@@ -253,7 +253,7 @@ type GetAccessCodeBaseSchema = {
   planId?: string;
 };
 
-export interface LocationAccessCodeResponse extends GetAccessCodeBaseSchema {
+export type LocationAccessCodeResponse = GetAccessCodeBaseSchema & {
   /**
    * The type of user the token is for
    * @enum {"Location"}
@@ -267,9 +267,9 @@ export interface LocationAccessCodeResponse extends GetAccessCodeBaseSchema {
    * @example conversations/message.readonly conversations/message.write
    */
   scope: LocationScope[];
-}
+};
 
-export interface CompanyAccessCodeResponse extends GetAccessCodeBaseSchema {
+export type CompanyAccessCodeResponse = GetAccessCodeBaseSchema & {
   /**
    * The type of user the token is for
    * @enum {"Company"}
@@ -283,7 +283,7 @@ export interface CompanyAccessCodeResponse extends GetAccessCodeBaseSchema {
    * @example conversations/message.readonly conversations/message.write
    */
   scope: CompanyScope[];
-}
+};
 
 export type GetAccessTokenResponse =
   | LocationAccessCodeResponse
