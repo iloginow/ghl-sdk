@@ -10,7 +10,7 @@
   "excludePrivate": true,
   "excludeProtected": true,
   "excludeExternals": false,
-  "excludeInternal": true,
+  "excludeInternal": false,
   "sort": [
     "source-order",
     "kind",
