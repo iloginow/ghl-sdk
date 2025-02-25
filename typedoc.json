@@ -1,8 +1,20 @@
 {
-  "entryPoints": ["src"],
+  "entryPoints": ["src/index.ts"],
   "entryPointStrategy": "expand",
   "plugin": ["typedoc-github-theme"],
   "theme": "typedoc-github-theme",
   "out": "docs",
-  "name": "GHL SDK"
+  "name": "GHL SDK",
+  "categorizeByGroup": false,
+  "includeVersion": true,
+  "excludePrivate": true,
+  "excludeProtected": true,
+  "excludeExternals": false,
+  "excludeInternal": true,
+  "sort": [
+    "source-order",
+    "kind",
+    "instance-first",
+    "alphabetical-ignoring-documents"
+  ]
 }
