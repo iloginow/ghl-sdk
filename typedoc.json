@@ -16,5 +16,6 @@
     "kind",
     "instance-first",
     "alphabetical-ignoring-documents"
-  ]
+  ],
+  "commentStyle": "all"
 }
