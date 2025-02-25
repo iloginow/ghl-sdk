@@ -1,27 +1,18 @@
-# GoHighLevel SDK for JavaScript  
+# GoHighLevel SDK for JavaScript
 
-![GHL SDK](https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/knES3eSWYIsc5YSZ3YLl/media/679a9bb431492763982fd8eb.png)  
-*[Image source: LeadConnectorHQ]*  
-
----
-
-## Key Features  
-- **Type Safety**: TypeScript definitions for all API endpoints.  
-- **Modular Design**: Import only the modules you need (e.g., `users`, `leads`).  
-- **Error Handling**: Unified error responses with automatic retry logic.  
-
----
+![GitHub License](https://img.shields.io/github/license/adkonghq/ghl-sdk)
+![GitHub last commit (branch)](https://img.shields.io/github/last-commit/adkonghq/ghl-sdk/master)
 
 ## Installation  
 ```bash  
 npm install ghl-sdk  
-# or  
+```
+```bash   
 yarn add ghl-sdk  
-# or  
+```
+```bash  
 pnpm add ghl-sdk  
-```  
-
----
+``` 
 
 ## Quick Start  
 ```typescript  
@@ -42,25 +33,10 @@ const { location } = await locationClient.findById('ve9EPM428h8vShlRW1KT');
 console.log(location.name);  
 ```  
 
----
+## Useful Resources  
+- [Typedoc Reference](https://adkonghq.github.io/ghl-sdk/)
+- [Issues](https://github.com/adkonghq/ghl-sdk/issues)  
 
-## Documentation  
-- [API Reference](https://adkonghq.github.io/ghl-sdk/)  
-
----
-
-## Contributing  
-Want to help improve the SDK?  
-1. Read the [Contributing Guide](https://github.com/adkonghq/ghl-sdk/blob/main/CONTRIBUTING.md).  
-2. Submit issues or pull requests.  
-3. Follow our [Code of Conduct](https://github.com/adkonghq/ghl-sdk/blob/main/CODE_OF_CONDUCT.md).  
-
----
-
-## Support  
-- File issues: [GitHub Issues](https://github.com/adkonghq/ghl-sdk/issues)  
-
----
 
 ## License  
 [MIT License](https://github.com/adkonghq/ghl-sdk/blob/main/LICENSE) © ADKongHQ  
