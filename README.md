@@ -39,6 +39,4 @@ console.log(location.name);
 
 
 ## License  
-[MIT License](https://github.com/adkonghq/ghl-sdk/blob/main/LICENSE) © ADKongHQ  
-
----
+[MIT License](https://github.com/adkonghq/ghl-sdk/blob/main/LICENSE) © AdKong
