@@ -1,4 +1,5 @@
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig } from 'axios';
+import axiosRetry from 'axios-retry';
 
 export class GhlClient {
   private readonly baseUrl = 'https://services.leadconnectorhq.com';
@@ -20,6 +21,11 @@ export class GhlClient {
       (response) => response.data,
       (error) => this.handleError(error),
     );
+
+    axiosRetry(this.axiosInstance, {
+      retryDelay: (retryCount, error) =>
+        axiosRetry.exponentialDelay(retryCount, error, 1000),
+    });
   }
 
   private handleError(error: AxiosError): Promise<never> {
