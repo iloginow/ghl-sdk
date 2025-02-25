@@ -19,6 +19,9 @@ import { ObjectsClient } from './objects/objects.client';
 import { PaymentsClient } from './payments/payments.client';
 import { ProductsClient } from './products/products.client';
 import { SaasClient } from './saas/saas.client';
+import { SnapshotsClient } from './snapshots/snapshots.client';
+import { SurveysClient } from './surveys/surveys.client';
+import { UsersClient } from './users/users.client';
 
 export {
   BlogsClient,
@@ -42,4 +45,7 @@ export {
   PaymentsClient,
   ProductsClient,
   SaasClient,
+  SnapshotsClient,
+  SurveysClient,
+  UsersClient,
 };
