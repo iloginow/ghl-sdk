@@ -1,6 +1,5 @@
 {
   "entryPoints": ["src/index.ts"],
-  "entryPointStrategy": "expand",
   "plugin": ["typedoc-github-theme"],
   "theme": "typedoc-github-theme",
   "out": "docs",
@@ -11,6 +10,7 @@
   "excludeProtected": true,
   "excludeExternals": false,
   "excludeInternal": false,
+  "readme": "none",
   "sort": [
     "source-order",
     "kind",
