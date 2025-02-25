@@ -1,4 +1,4 @@
-type UserPermissions = {
+export type UserPermissions = {
   campaignsEnabled?: boolean /** If the campaigns are enabled */;
   campaignsReadOnly?: boolean /** If the campaigns are read only */;
   contactsEnabled?: boolean /** If the contacts are enabled */;
@@ -39,18 +39,18 @@ type UserPermissions = {
   exportPaymentsEnabled?: boolean /** If the export payments are enabled */;
 };
 
-type UserRole = 'admin' | 'user';
+export type UserRole = 'admin' | 'user';
 
-type UserType = 'account' | 'agency';
+export type UserType = 'account' | 'agency';
 
-type UserRoleDetails = {
+export type UserRoleDetails = {
   type?: UserType /** The type of the role */;
   role?: UserRole /** The role */;
   locationIds?: string[] /** The location ids */;
   restrictSubAccount?: boolean /** If the sub account is restricted */;
 };
 
-type UserScope =
+export type UserScope =
   | 'campaigns.readonly'
   | 'campaigns.write'
   | 'calendars/events.write'

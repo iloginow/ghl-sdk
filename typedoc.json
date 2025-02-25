@@ -1,0 +1,8 @@
+{
+  "entryPoints": ["src"],
+  "entryPointStrategy": "expand",
+  "plugin": ["typedoc-github-theme"],
+  "theme": "typedoc-github-theme",
+  "out": "docs",
+  "name": "GHL SDK"
+}
