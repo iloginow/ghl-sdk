@@ -34,7 +34,7 @@ export type ContactOpportunity = {
   status: OpportunityStatus /** The status of the opportunity (open) */;
 };
 
-export type CustomField = {
+export type ContactCustomField = {
   id: string /** The ID of the custom field (MgobCB14YMVKuE4Ka8p1) */;
   value: string /** The value of the custom field (name) */;
 };
@@ -69,7 +69,7 @@ export type Contact = {
   dnd?: boolean /** The DND status of the contact (false) */;
   state?: string /** The state of the contact (California) */;
   businessName?: string /** The business name of the contact (Acme Corporation) */;
-  customFields?: CustomField /** The custom fields of the contact ([{ id: "MgobCB14YMVKuE4Ka8p1", value: "name" }]) */;
+  customFields?: ContactCustomField /** The custom fields of the contact ([{ id: "MgobCB14YMVKuE4Ka8p1", value: "name" }]) */;
   tags?: string[] /** The tags of the contact (["tag-1","tag-2"]) */;
   dateAdded?: string /** The date the contact was added (2024-06-06T18:54:57.221Z) */;
   additionalEmails?: string[] /** The additional emails of the contact (["john@example.com","jane@example.com"]) */;
@@ -202,11 +202,6 @@ export type ContactDndSettings = {
   FB: ContactDndSetting /** The DND settings for the FB channel */;
 };
 
-export type ContactCustomField = {
-  id?: string /** The ID of the custom field (MgobCB14YMVKuE4Ka8p1) */;
-  value?: string /** The value of the custom field (name) */;
-};
-
 export type ContactAttributionSource = {
   url: string /** The URL of the attribution source (https://www.google.com) */;
   campaign?: string /** The campaign of the attribution source (null) */;
@@ -270,7 +265,7 @@ export type ContactCreateSuccessfulResponseSchema = {
   deleted?: boolean /** The deletion status of the contact (false) */;
   tags?: string[][] /** The tags of the contact (["tag-1","tag-2"]) */;
   type?: string /** The type of the contact (lead) */;
-  customFields?: CustomField[] /** The custom fields of the contact ([{ id: "MgobCB14YMVKuE4Ka8p1", value: "name" }]) */;
+  customFields?: ContactCustomField[] /** The custom fields of the contact ([{ id: "MgobCB14YMVKuE4Ka8p1", value: "name" }]) */;
   locationId?: string /** The ID of the location (502goXVW3lIExEQPOnd3) */;
   firstName?: string /** The first name of the contact (John) */;
   firstNameLowerCase?: string /** The lowercase first name of the contact (john) */;
@@ -361,7 +356,7 @@ export type ContactUpdateSuccessfulResponseSchema = {
   ssn?: string /** The SSN of the contact */;
   keyword?: string /** The keyword of the contact (test) */;
   lastActivity?: string /** The last activity of the contact (2021-07-16T11:39:30.564Z) */;
-  customFields?: CustomField[] /** The custom fields of the contact ([{ id: "MgobCB14YMVKuE4Ka8p1", value: "name" }]) */;
+  customFields?: ContactCustomField[] /** The custom fields of the contact ([{ id: "MgobCB14YMVKuE4Ka8p1", value: "name" }]) */;
   businessId?: string /** The ID of the business (282goXVW3lIExEQPOnd3) */;
   createdBy?: ContactAttributionSource /** The attribution source of the contact */;
   lastUpdatedBy?: ContactAttributionSource /** The last attribution source of the contact */;
@@ -386,7 +381,7 @@ export type ContactSearchResult = {
   country?: string /** The country of the contact (US) */;
   source?: string /** The source of the contact (public api) */;
   dateAdded?: string /** The date the contact was added (2021-07-02T05:18:26.704Z) */;
-  customFields?: CustomField[] /** The custom fields of the contact ([{ id: "MgobCB14YMVKuE4Ka8p1", value: "name" }]) */;
+  customFields?: ContactCustomField[] /** The custom fields of the contact ([{ id: "MgobCB14YMVKuE4Ka8p1", value: "name" }]) */;
   tags?: string[][] /** The tags of the contact (["nisi sint commodo amet","consequat"]) */;
   businessId?: string /** The ID of the business (282goXVW3lIExEQPOnd3) */;
   attributions?: ContactAttributionSource[] /** The attributions of the contact */;

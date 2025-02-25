@@ -55,3 +55,31 @@ export {
   UsersClient,
   WorkflowsClient,
 };
+
+export type * from './blogs/blogs.types';
+export type * from './businesses/businesses.types';
+export type * from './calendars/calendars.types';
+export type * from './campaigns/campaigns.types';
+export type * from './companies/companies.types';
+export type * from './contacts/contacts.types';
+export type * from './conversations/conversations.types';
+export type * from './courses/courses.types';
+export type * from './custom-fields/custom-fields.types';
+export type * from './custom-menus/custom-menus.types';
+export type * from './emails/emails.types';
+export type * from './forms/forms.types';
+export type * from './funnels/funnels.types';
+export type * from './invoices/invoices.types';
+export type * from './lc-email/lc-email.types';
+export type * from './links/links.types';
+export type * from './locations/locations.types';
+export type * from './media/media.types';
+export type * from './oauth/oauth.types';
+export type * from './objects/objects.types';
+export type * from './payments/payments.types';
+export type * from './products/products.types';
+export type * from './saas/saas.types';
+export type * from './snapshots/snapshots.types';
+export type * from './surveys/surveys.types';
+export type * from './users/users.types';
+export type * from './workflows/workflows.types';

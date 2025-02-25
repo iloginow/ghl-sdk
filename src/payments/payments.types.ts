@@ -219,7 +219,7 @@ export type ProductSEO = {
   description?: string /** SEO Description for the product which will be displayed in the preview */;
 };
 
-export type Product = {
+export type PaymentProduct = {
   _id: string /** The unique identifier for the product. */;
   description?: string /** product description */;
   variants?: PaymentsProductVariantSchema[] /** An array of variants for the product. */;
@@ -242,7 +242,7 @@ export type Product = {
   seo?: ProductSEO /** The SEO information for the product requested */;
 };
 
-export type MembershipOffer = {
+export type PaymentMembershipOffer = {
   _id: string /** The unique identifier for the membership offer. */;
   label: string /** Membership offer label */;
   value: string /** Membership offer value */;
@@ -255,17 +255,17 @@ export type RecurringPayment = {
   intervalCount: number /** The interval count of the recurring product. */;
 };
 
-export type PriceType = 'one_time' | 'recurring';
+export type PaymentPriceType = 'one_time' | 'recurring';
 
 export type PriceResponse = {
   _id: string /** The unique identifier for the price. */;
-  membershipOffers?: MembershipOffer[] /** An array of membership offers associated with the price. */;
+  membershipOffers?: PaymentMembershipOffer[] /** An array of membership offers associated with the price. */;
   variantOptionIds?: string[] /** An array of variant option IDs associated with the price. */;
   locationId?: string /** The unique identifier for the location. */;
   product?: string /** The unique identifier for the associated product. */;
   userId?: string /** The unique identifier for the user. */;
   name: string /** The name of the price. */;
-  type: PriceType /** The type of the price (e.g., one_time). */;
+  type: PaymentPriceType /** The type of the price (e.g., one_time). */;
   currency: string /** The currency code for the price. */;
   amount: number /** The amount of the price. */;
   recurring?: RecurringPayment /** The recurring details of the price (if type is recurring). */;
@@ -280,7 +280,7 @@ export type PriceResponse = {
 export type OrderFulfillmentItem = {
   _id: string /** The id of product price */;
   name: string /** Name of the product */;
-  product: Product /** Product details */;
+  product: PaymentProduct /** Product details */;
   price: PriceResponse /** Price details */;
   qty: number /** The no of quantity of the current fulfilled item */;
 };

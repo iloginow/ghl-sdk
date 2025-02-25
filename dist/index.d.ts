@@ -495,11 +495,22 @@ type CreateCalendarGroupDto = {
     slug: string;
     isActive?: boolean;
 };
+type CalendarGetFreeSlots = {
+    startDate: string;
+    endDate: string;
+    userId?: string;
+    userIds?: string[];
+    timezone?: string;
+    enableLookBusy?: string;
+};
 type CreateUpdateCalendarGroupResponse = {
     group: CalendarGroup;
 };
 type UpdateCalendarGroupStatusResponse = {
     success: boolean;
+};
+type CalendarGroupStatusUpdateParams = {
+    isActive: boolean;
 };
 type UpdateCalendarGroupDto = {
     name: string;
@@ -639,30 +650,89 @@ type CalendarBaseDto = {
     calendarCoverImage?: string;
     lookBusyConfig?: CalendarLookBusyConfiguration;
 };
-interface CalendarUserAssignedDTO extends CalendarBaseDto {
+type CalendarUserAssignedDTO = CalendarBaseDto & {
     teamMembers: CalendarTeamMember[];
     calendarType: CalendarUserAssignedType;
-}
-interface CalendarNonUserAssignedDTO extends CalendarBaseDto {
+};
+type CalendarNonUserAssignedDTO = CalendarBaseDto & {
     calendarType: CalendarNonUserAssignedType;
     meetingLocation: string;
-}
+};
 type Calendar = CalendarUserAssignedDTO | CalendarNonUserAssignedDTO;
 type ListCalendarsResponse = {
     calendars: Calendar[];
 };
-interface CalendarCreateUserAssignedDto extends CalendarBaseDto {
+type CalendarBaseCreateUpdateDto = {
+    name: string;
+    locationId: string;
+    notifications?: CalendarNotification[];
+    isActive?: boolean;
+    groupId?: string;
+    eventType?: CalendarEventType;
+    description?: string;
+    slug?: string;
+    widgetSlug?: string;
+    widgetType?: CalendarWidgetType;
+    eventTitle?: string;
+    eventColor?: string;
+    slotDuration?: number;
+    slotDurationUnit?: 'mins' | 'hours';
+    slotInterval?: number;
+    slotIntervalUnit?: 'mins' | 'hours';
+    slotBuffer?: number;
+    slotBufferUnit?: 'mins' | 'hours';
+    preBuffer?: number;
+    preBufferUnit?: 'mins' | 'hours';
+    appoinmentPerSlot?: number;
+    appoinmentPerDay?: number;
+    allowBookingAfter?: number;
+    allowBookingAfterUnit?: 'hours' | 'days' | 'weeks' | 'months';
+    allowBookingFor?: number;
+    allowBookingForUnit?: 'days' | 'weeks' | 'months';
+    openHours?: CalendarOpenHour[];
+    enableRecurring?: boolean;
+    recurring?: CalendarRecurring;
+    formId?: string;
+    stickyContact?: boolean;
+    isLivePaymentMode?: boolean;
+    autoConfirm?: boolean;
+    shouldSendAlertEmailsToAssignedMember?: boolean;
+    alertEmail?: string;
+    googleInvitationEmails?: boolean;
+    allowReschedule?: boolean;
+    allowCancellation?: boolean;
+    shouldAssignContactToTeamMember?: boolean;
+    shouldSkipAssigningContactForExisting?: boolean;
+    notes?: string;
+    pixelId?: string;
+    formSubmitType?: 'RedirectURL' | 'ThankYouMessage';
+    formSubmitRedirectURL?: string;
+    formSubmitThanksMessage?: string;
+    availabilityType?: 0 | 1;
+    availabilities?: CalendarAvailability[];
+    guestType?: 'count_only' | 'collect_detail';
+    consentLabel?: string;
+    calendarCoverImage?: string;
+    lookBusyConfig?: CalendarLookBusyConfiguration;
+};
+type CalendarCreateUserAssignedDto = CalendarBaseDto & {
     teamMembers: CalendarTeamMember[];
     calendarType: CalendarUserAssignedType;
-}
-interface CalendarCreateNonUserAssignedDto extends CalendarBaseDto {
+};
+type CalendarCreateNonUserAssignedDto = CalendarBaseDto & {
     calendarType: CalendarNonUserAssignedType;
     meetingLocation: string;
-}
+};
 type CreateCalendarDto = CalendarCreateUserAssignedDto | CalendarCreateNonUserAssignedDto;
 type UpdateCalendarDto = Partial<CalendarCreateUserAssignedDto> | Partial<CalendarCreateNonUserAssignedDto>;
 type GetCalendarResponse = {
     calendar: Calendar;
+};
+type CalendarUpdateAvailabilityDTO = {
+    date: string;
+    hours: CalendarHour;
+    deleted?: boolean;
+    id?: string;
 };
 type GetCalendarEventResponse = {
     event: CalendarEvent;
@@ -695,6 +765,17 @@ type AppointmentCreateUpdateResponse = {
     address?: string;
     isRecurring?: boolean;
     rrule?: string;
+};
+type CalendarAppointmentEditSchemaDTO = {
+    calendarId: string;
+    startTime: string;
+    endTime: string;
+    title: string;
+    meetingLocationType: string;
+    appointmentStatus: string;
+    address: string;
+    ignoreDateRange: boolean;
+    toNotify: boolean;
 };
 type CreateBlockSlotDto = {
     locationId: string;
@@ -999,7 +1080,7 @@ type ContactOpportunity = {
     monetary_value: number;
     status: OpportunityStatus;
 };
-type CustomField$1 = {
+type ContactCustomField = {
     id: string;
     value: string;
 };
@@ -1030,7 +1111,7 @@ type Contact = {
     dnd?: boolean;
     state?: string;
     businessName?: string;
-    customFields?: CustomField$1;
+    customFields?: ContactCustomField;
     tags?: string[];
     dateAdded?: string;
     additionalEmails?: string[];
@@ -1127,6 +1208,24 @@ type ContactBulkUpateResponse = {
     success: boolean;
     ids: string[];
 };
+declare enum ContactDndStatus {
+    Active = "active",
+    Inactive = "inactive",
+    Permanent = "permanent"
+}
+type ContactDndSetting = {
+    status: ContactDndStatus;
+    message?: string;
+    code?: string;
+};
+type ContactDndSettings = {
+    Call: ContactDndSetting;
+    Email: ContactDndSetting;
+    SMS: ContactDndSetting;
+    WhatsApp: ContactDndSetting;
+    GMB: ContactDndSetting;
+    FB: ContactDndSetting;
+};
 type ContactAttributionSource = {
     url: string;
     campaign?: string;
@@ -1182,7 +1281,7 @@ type ContactCreateSuccessfulResponseSchema = {
     deleted?: boolean;
     tags?: string[][];
     type?: string;
-    customFields?: CustomField$1[];
+    customFields?: ContactCustomField[];
     locationId?: string;
     firstName?: string;
     firstNameLowerCase?: string;
@@ -1267,7 +1366,7 @@ type ContactUpdateSuccessfulResponseSchema = {
     ssn?: string;
     keyword?: string;
     lastActivity?: string;
-    customFields?: CustomField$1[];
+    customFields?: ContactCustomField[];
     businessId?: string;
     createdBy?: ContactAttributionSource;
     lastUpdatedBy?: ContactAttributionSource;
@@ -1289,11 +1388,20 @@ type ContactSearchResult = {
     country?: string;
     source?: string;
     dateAdded?: string;
-    customFields?: CustomField$1[];
+    customFields?: ContactCustomField[];
     tags?: string[][];
     businessId?: string;
     attributions?: ContactAttributionSource[];
     followers?: string[];
+};
+type ContactsMetaSchema = {
+    total?: number;
+    nextPageUrl?: string;
+    startAfterId?: string;
+    startAfter?: number;
+    currentPage?: number;
+    nextPage?: number;
+    prevPage?: number | null;
 };
 type FindContactsResponse = {
     contacts: ContactSearchResult[];
@@ -1310,6 +1418,15 @@ type ContactRemoveFollowersResponse = {
 type ContactActionResponse = {
     succeded?: boolean;
 };
+declare enum SearchFilterOpporators {
+    eq = "eq",
+    not_eq = "not_eq",
+    contains = "contains",
+    not_contains = "not_contains",
+    exists = "exists",
+    not_exists = "not_exists",
+    range = "range"
+}
 type SearchConfigDates = {
     gt?: string;
     lt?: string;
@@ -1750,6 +1867,12 @@ declare class ContactsClient extends GhlClient {
     removeFollowers(contactId: string, followers: string[]): Promise<ContactRemoveFollowersResponse>;
 }
 
+type ConvStartAfterDate = {
+    startAfterDate: number;
+};
+type ConvStartAfterArrayNumber = {
+    startAfterDate: number[];
+};
 declare enum ConversationMessageTypeNumbered {
     TYPE_CALL = 0,
     TYPE_SMS = 1,
@@ -1973,6 +2096,10 @@ type ConversationUploadFilesDto = {
 };
 type ConversationUploadFilesResponse = {
     uploadedFiles: object;
+};
+type ConversationUploadFilesErrorResponseDto = {
+    status: number;
+    message: string;
 };
 type ConversationError = {
     code: number;
@@ -2330,6 +2457,19 @@ type EmailTemplateSearchParams = {
     sortByDate?: string;
     templatesOnly?: string;
 };
+type EmailParams = {
+    locationId: string;
+    archived?: string;
+    builderVersion?: string;
+    limit?: string;
+    name?: string;
+    offset?: string;
+    originId?: string;
+    parentId?: string;
+    search?: string;
+    sortByDate?: string;
+    templatesOnly?: string;
+};
 
 declare class EmailsClient extends GhlClient {
     constructor(accessToken: string);
@@ -2594,6 +2734,9 @@ type InvoiceDiscount = {
     type: 'percentage' | 'fixed';
     value?: number;
 };
+type InvoiceDiscountUpdate = InvoiceDiscount & {
+    value: number;
+};
 type CreateInvoiceTemplateDto = {
     altId: string;
     altType: 'location';
@@ -2830,6 +2973,10 @@ type UpdateInvoiceDto = {
 type UpdateInvoiceResponse = CreateInvoiceResponse;
 type DeleteInvoiceResponse = CreateInvoiceResponse;
 type VoidInvoiceResponse = CreateInvoiceResponse;
+type InvoiceSenderConfig = {
+    fromName?: string;
+    fromEmail?: string;
+};
 type SendInvoiceDto = {
     altId: string;
     altType: 'location';
@@ -3205,6 +3352,10 @@ type LocationsFileInterface = {
     name: string;
     blob: Blob;
 };
+type LocationsFileUploadBody = {
+    id?: string;
+    maxFiles?: number;
+};
 type LocationsFileuploadMeta = {
     fieldName?: string;
     originalname?: string;
@@ -3379,14 +3530,14 @@ type GetAccessCodeBaseSchema = {
     approvedLocations?: string[];
     planId?: string;
 };
-interface LocationAccessCodeResponse extends GetAccessCodeBaseSchema {
+type LocationAccessCodeResponse = GetAccessCodeBaseSchema & {
     userType: 'Location';
     scope: LocationScope[];
-}
-interface CompanyAccessCodeResponse extends GetAccessCodeBaseSchema {
+};
+type CompanyAccessCodeResponse = GetAccessCodeBaseSchema & {
     userType: 'Company';
     scope: CompanyScope[];
-}
+};
 type GetAccessTokenResponse = LocationAccessCodeResponse | CompanyAccessCodeResponse;
 type GetLocationTokenDto = {
     companyId: string;
@@ -3418,6 +3569,16 @@ type GetInstalledLocationsParams = {
     isInstalled?: boolean;
     limit?: string;
     onTrial?: boolean;
+    planId?: string;
+    query?: string;
+    skip?: string;
+};
+type OAuthSearchParams = {
+    companyId: string;
+    appId: string;
+    isInstalled?: string;
+    limit?: string;
+    onTrial?: string;
     planId?: string;
     query?: string;
     skip?: string;
@@ -3552,6 +3713,10 @@ type CustomObjectRecordSearchResult = {
     createdBy: CustomObjectRecordMetaData;
     lastUpdatedBy: CustomObjectRecordMetaData;
     searchAfter: Array<string | number>;
+};
+type CustomObjectRecordSearchResponse = {
+    records: CustomObjectRecordSearchResult[];
+    total: number;
 };
 
 declare class ObjectsClient extends GhlClient {
@@ -3740,7 +3905,7 @@ type ProductSEO = {
     title?: string;
     description?: string;
 };
-type Product$1 = {
+type PaymentProduct = {
     _id: string;
     description?: string;
     variants?: PaymentsProductVariantSchema[];
@@ -3762,7 +3927,7 @@ type Product$1 = {
     slug?: string;
     seo?: ProductSEO;
 };
-type MembershipOffer$1 = {
+type PaymentMembershipOffer = {
     _id: string;
     label: string;
     value: string;
@@ -3772,16 +3937,16 @@ type RecurringPayment = {
     inverval: Inverval;
     intervalCount: number;
 };
-type PriceType$1 = 'one_time' | 'recurring';
+type PaymentPriceType = 'one_time' | 'recurring';
 type PriceResponse = {
     _id: string;
-    membershipOffers?: MembershipOffer$1[];
+    membershipOffers?: PaymentMembershipOffer[];
     variantOptionIds?: string[];
     locationId?: string;
     product?: string;
     userId?: string;
     name: string;
-    type: PriceType$1;
+    type: PaymentPriceType;
     currency: string;
     amount: number;
     recurring?: RecurringPayment;
@@ -3795,7 +3960,7 @@ type PriceResponse = {
 type OrderFulfillmentItem = {
     _id: string;
     name: string;
-    product: Product$1;
+    product: PaymentProduct;
     price: PriceResponse;
     qty: number;
 };
@@ -4019,6 +4184,10 @@ type CustomIntegrationProviderLiveModeConnectDetails = {
         liveMode?: boolean;
     };
 };
+type CustomIntegrationProviderKeys = {
+    apiKey: string;
+    publishableKey: string;
+};
 type CustomIntegrationProviderResponse = {
     _id: string;
     locationId: string;
@@ -4033,6 +4202,9 @@ type CustomIntegrationProviderResponse = {
     createdAt: string;
     updatedAt: string;
     traceId: string;
+};
+type DeleteCustomIntegrationProviderResponse = {
+    liveMode: boolean;
 };
 type DisconnectCustomIntegrationProviderResponse = {
     success: boolean;
@@ -4323,6 +4495,9 @@ type SnapshotAssetsStatus = {
     completed?: string[];
     pending?: string[];
 };
+type SnapshotAssetsStatusResponse = {
+    data: SnapshotAssetsStatus[];
+};
 
 declare class SnapshotsClient extends GhlClient {
     constructor(accessToken: string);
@@ -4562,4 +4737,4 @@ declare class WorkflowsClient extends GhlClient {
     findByLocationId(locationId: string): Promise<ListWorkflowsResponse>;
 }
 
-export { BlogsClient, BusinessesClient, CalendarsClient, CampaignsClient, CompaniesClient, ContactsClient, ConversationsClient, CoursesClient, CustomFieldsClient, CustomMenusClient, EmailsClient, FormsClient, FunnelsClient, InvoicesClient, LCEmailClient, LinksClient, LocationsClient, MediaClient, OAuthClient, ObjectsClient, PaymentsClient, ProductsClient, SaasClient, SnapshotsClient, SurveysClient, UsersClient, WorkflowsClient };
+export { type AmountSummary, type AppointmentCreateUpdateDto, type AppointmentCreateUpdateResponse, type AppointmentNote, type AppointmentNoteDto, type AppointmentNoteResponse, type BlockSlotCreateUpdateResponse, type BlogsAuthorSocialsSchema, type BlogsAuthorsSchema, type BlogsCategorySchema, BlogsClient, type BlogsSearchParams, type Business, type BusinessContactSearchParams, BusinessesClient, type Calendar, type CalendarAppointmentEditSchemaDTO, type CalendarAvailability, type CalendarBaseCreateUpdateDto, type CalendarBaseDto, type CalendarCreateNonUserAssignedDto, type CalendarCreateUserAssignedDto, type CalendarDay, type CalendarEvent, type CalendarEventSearchParams, type CalendarEventType, type CalendarGetFreeSlots, type CalendarGroup, type CalendarGroupStatusUpdateParams, type CalendarHour, type CalendarLookBusyConfiguration, type CalendarMeetingLocationTypes, type CalendarNonUserAssignedDTO, type CalendarNonUserAssignedType, type CalendarNotification, type CalendarOpenHour, type CalendarRecurring, type CalendarRecurringCount, type CalendarResourceResponse, type CalendarResourceSearchParams, type CalendarResourceType, type CalendarSearchParams, type CalendarSlotsSchema, type CalendarTeamMember, type CalendarTeamMemberPriorityTypes, type CalendarUpdateAvailabilityDTO, type CalendarUserAssignedDTO, type CalendarUserAssignedType, type CalendarWidgetType, CalendarsClient, type Campaign, type CampaignSearchParams, CampaignsClient, type CampaignsResponse, type ChannelDNDSettings, type CheckSlugDto, type CheckSlugResponse, type CompaniesAgencyProAddOn, CompaniesAgencyProAddonActivePlansEnum, type CompaniesBillingInfo, CompaniesClient, type CompaniesDowngrade, type CompaniesEndTrial, type CompaniesIOnboarding, type CompaniesPauseSubscriptionInfo, type CompaniesReactivationAttempt, type Company, type CompanyAccessCodeResponse, type CompanyResponse, type CompanyScope, CompanySubscriptionStatusEnum, type Contact, type ContactActionResponse, type ContactAddFollowersResponse, type ContactAttributionSource, type ContactBulkUpateResponse, type ContactBusinessUpdateDto, type ContactCreateSuccessfulResponseSchema, type ContactCustomField, type ContactCustomFieldsInputArray, type ContactCustomFieldsInputObject, type ContactCustomFieldsInputString, type ContactDndSetting, type ContactDndSettings, ContactDndStatus, type ContactEvent, type ContactInboundDndSetting, type ContactInboundDndSettings, type ContactLegacySearchParams, type ContactNote, type ContactNoteDto, type ContactNoteResponse, type ContactOpportunity, type ContactRemoveFollowersResponse, type ContactResponse, type ContactSearchOptions, type ContactSearchResponse, type ContactSearchResult, type ContactTagsDto, type ContactTask, type ContactTaskResponse, type ContactUpdateSuccessfulResponseSchema, ContactsClient, type ContactsDuplicateSearchResponse, type ContactsMetaSchema, type ConvStartAfterArrayNumber, type ConvStartAfterDate, type Conversation, type ConversationActionResponse, type ConversationCallData, type ConversationCallStatus, type ConversationCancelScheduledResponse, type ConversationDirection, type ConversationEmailResponse, type ConversationError, type ConversationInboundMessageDto, type ConversationMessageDto, type ConversationMessageResponse, type ConversationMessageType, ConversationMessageTypeNumbered, type ConversationMessageTypeString, type ConversationOutboundMessageDto, type ConversationProcessMessageResponse, type ConversationReplyMode, type ConversationResponse, type ConversationSchema, type ConversationSearchParams, type ConversationSearchResponse, type ConversationSource, type ConversationStatus, type ConversationType, type ConversationUpdateMessageStatusDto, type ConversationUpdateMessageStatusOptions, type ConversationUploadFilesDto, type ConversationUploadFilesErrorResponseDto, type ConversationUploadFilesResponse, ConversationsClient, type ConverstationMessageTranscriptionResponse, type CourseCategoryInterface, type CourseContentType, type CourseFileType, type CourseInstructorDetails, type CoursePostInterface, type CoursePostMaterialInterface, type CourseProductInterface, type CoursePublicExporterPayload, type CourseSubCategoryInterface, type CourseVisibility, CoursesClient, type CreateBlockSlotDto, type CreateBusinessDto, type CreateCalendarDto, type CreateCalendarGroupDto, type CreateCalendarResourceDto, type CreateContactDto, type CreateContactTaskDto, type CreateConversationDto, type CreateCustomFieldDto, type CreateCustomFieldFolderDto, type CreateCustomIntegrationProviderDto, type CreateCustomMenuDto, type CreateCustomObjectDto, type CreateCustomObjectRecordDto, type CreateEmailTemplateDto, type CreateEmailTemplateResponse, type CreateFunnelRedirectDto, type CreateInvoiceDto, type CreateInvoiceResponse, type CreateInvoiceScheduleDto, type CreateInvoiceTemplateDto, type CreateLinkDto, type CreateLocationCustomFieldDto, type CreateLocationDto, type CreateOrderFulfillmentDto, type CreatePostDto, type CreatePostResponse, type CreateUpdateBusinessResponse, type CreateUpdateCalendarGroupResponse, type CreateUpdateLocationResponse, type CreateUserDto, type CreateWhiteLabelIntegrationProviderDto, type CustomField, type CustomFieldFolder, type CustomFieldOption, type CustomFieldResponse, CustomFieldsClient, type CustomFileInterface, type CustomIntegrationProviderConnectDetails, type CustomIntegrationProviderKeys, type CustomIntegrationProviderLiveModeConnectDetails, type CustomIntegrationProviderResponse, type CustomMenu, type CustomMenuIcon, type CustomMenuOpenMode, type CustomMenuResponse, type CustomMenuSearchParams, type CustomMenuUserRole, CustomMenusClient, type CustomObject, type CustomObjectField, type CustomObjectRecord, type CustomObjectRecordMetaData, type CustomObjectRecordResponse, type CustomObjectRecordSearchResponse, type CustomObjectRecordSearchResult, type CustomObjectResponse, type CustomObjectSchemaResponse, type CustomObjectTypeUpdateDirective, type DNDSettings, type DeleteCustomIntegrationProviderResponse, type DeleteCustomMenuResponse, type DeleteCustomObjectRecordResponse, type DeleteEmailTemplateResponse, type DeleteFunnelRedirectResponse, type DeleteInvoiceResponse, type DeleteLocationResponse, type DeleteUserResponse, type DisconnectCustomIntegrationProviderResponse, type DisplayPropertyDetails, type DuplicateContactSearchParams, type EmailBuilderJSONMapper, type EmailBuilderVersion, type EmailImportProvider, type EmailParams, type EmailTemplateSearchParams, type EmailType, type EmailVerificationDto, type EmailVerificationResponse, type EmailVerificationResult, type EmailVerificationRisk, EmailsClient, type EmailsTemplateSettings, type EnableSaasSubscriptionDto, type FetchEmailTemplateResponse, type FindContactsResponse, type Form, type FormSearchParams, type FormSubmission, type FormSubmissionSearchParams, FormsClient, type FormsContactSessionIds, type FormsEventData, type FormsPageDetailsSchema, type Funnel, type FunnelPageCountParams, type FunnelPageCountResponse, type FunnelPageResponse, type FunnelPageSearchParams, type FunnelRedirect, type FunnelRedirectAction, type FunnelRedirectResponse, type FunnelRedirectSearchParams, type FunnelSearchParams, type FunnelStep, FunnelsClient, type GenerateInvoiceNumberResponse, type GetAccessCodeBaseSchema, type GetAccessTokenDto, type GetAccessTokenResponse, type GetBusinessResponse, type GetCalendarEventResponse, type GetCalendarResponse, type GetCalendarSlotsResponse, type GetInstalledLocationsParams, type GetInstalledLocationsResponse, type GetLocationTokenDto, type GetLocationTokenResponse, type Hour, type InstalledLocationSchema, type IntegrationProviderSearchParams, type InternalSource, type Inverval, type InvoiceAddress, type InvoiceAddtitionalEmails, type InvoiceAutoPaymentDetails, type InvoiceBusinessDetails, type InvoiceCard, type InvoiceCheque, type InvoiceContactDetails, type InvoiceDiscount, type InvoiceDiscountUpdate, type InvoiceItem, type InvoiceItemDto, type InvoiceResponse, type InvoiceScheduleResponse, type InvoiceScheduleSearchParams, type InvoiceSenderConfig, type InvoiceStatusOptions, type InvoiceTax, type InvoiceTemplateResponse, type InvoicesAutoPaymentDto, InvoicesClient, type InvoicesSchedule, type InvoicesSearchParams, type InvoicesSendTo, LCEmailClient, type Labels, type LeadConnectorRecommendation, type Link, type LinkResponse, LinksClient, type ListAppointmentNotesResponse, type ListAuthorsResponse, type ListBusinessesResponse, type ListCalendarEventsResponse, type ListCalendarGroupsResponse, type ListCalendarsResponse, type ListCategoriesResponse, type ListContactEventsResponse, type ListContactNotesResponse, type ListContactTaskResponse, type ListConversationMessagesResponse, type ListCustomFieldsResponse, type ListCustomMenusResponse, type ListCustomObjectsResponse, type ListFormSubmissionsResponse, type ListFormSubmissionsResponseMeta, type ListFormsResponse, type ListFunnelRedirectsResponse, type ListFunnelsResponse, type ListIntegrationProvidersResponse, type ListInvoiceSchedulesResponse, type ListInvoiceTemplatesResponse, type ListInvoicesResponse, type ListLinksResponse, type ListLocationCustomFieldsResponse, type ListLocationCustomValuesResponse, type ListLocationTagsResponse, type ListLocationTasksResponse, type ListLocationTemplatesResponse, type ListLocationsResponse, type ListMediaFilesResponse, type ListOrdersResponse, type ListProductPricesResponse, type ListProductStats, type ListProductsResponse, type ListSnapshotsResponse, type ListSubscriptionsResponse, type ListSurveySubmissionsResponse, type ListSurveysResponse, type ListTransactionsResponse, type ListUsersResponse, type ListWorkflowsResponse, type Location, type LocationAccessCodeResponse, type LocationBusiness, type LocationCustomField, type LocationCustomFieldFileFormat, type LocationCustomFieldModel, type LocationCustomFieldResponse, type LocationCustomFieldTextBoxListOptions, type LocationCustomFieldType, type LocationCustomValue, type LocationCustomValueDto, type LocationCustomValueResponse, type LocationDetails, type LocationEmailTemplate, type LocationEmailTemplateDetails, type LocationProspectInfo, type LocationResponse, type LocationSMSTemplate, type LocationSMSTemplateDetails, type LocationScope, type LocationSearchParams, type LocationSettings, type LocationSocial, type LocationTag, type LocationTagResponse, type LocationTask, type LocationTaskContact, type LocationTaskSearchParams, type LocationTaskUser, type LocationTemplateSearchParams, type LocationTimeZonesResponse, LocationsClient, type LocationsFileInterface, type LocationsFileUploadBody, type LocationsFileUploadResponse, type LocationsFileuploadMeta, type LocationsMailgunSchema, type LocationsSnapshotPutSchema, type LocationsTwilioSchema, MediaClient, type MediaFileDetails, type MediaFileSearchParams, type MembershipOffer, type Minute, OAuthClient, type OAuthSearchParams, ObjectsClient, OpportunityStatus, type Option, type Order, type OrderContactSnapshot, type OrderCoupon, type OrderFulfillmentData, type OrderFulfillmentItem, type OrderFulfillmentResponse, type OrderFulfillmentTracking, type OrderItem, type OrderItemProduct, type OrderMetaData, type OrderResponse, type OrderSearchParams, type OrderSource, type OrderSourceMetaData, type OrderSourceSubType, type OrderSourceType, type OtherFormFields, type OtherSurveyData, type PaymentIntegrationProvider, type PaymentMembershipOffer, type PaymentPriceType, type PaymentProduct, type PaymentProductMediaDto, type PaymentProductMediaType, PaymentsClient, type PaymentsProductVariantOptionSchema, type PaymentsProductVariantSchema, type PriceMeta, type PriceResponse, type PriceType, type Product, type ProductDto, type ProductLabel, type ProductMedia, type ProductPrice, type ProductPriceDto, type ProductPriceSearchParams, type ProductSEO, type ProductSearchParams, type ProductType, type ProductVariant, type ProductVariantOption, ProductsClient, type ProductsDeleteResponse, type RebillingConfig, type RebillingProduct, type RecordInvoicePaymentDto, type RecordInvoicePaymentResponse, type RecurringData, type RecurringInterval, type RecurringPayment, type RemoveCustomFieldResponse, SaasClient, type SaasRebillingDto, type SaasSubscriptionDto, type SaasSubscriptionResponse, type Scope, type SearchActiveWorkflows, type SearchActiveWorkflowsExists, type SearchActiveWorkflowsValue, type SearchAddress, type SearchAddressExists, type SearchAddressValue, type SearchAssignedTo, type SearchAssignedToExists, type SearchAssignedToValue, type SearchBusinessName, type SearchBusinessNameExists, type SearchBusinessNameValue, type SearchCity, type SearchCityExists, type SearchCityValue, type SearchCompanyName, type SearchCompanyNameExists, type SearchCompanyNameValue, type SearchConfigDates, type SearchContactId, type SearchContactType, type SearchContactTypeExists, type SearchContactTypeValue, type SearchCountry, type SearchCountryExists, type SearchCountryValue, type SearchCustomField, type SearchCustomFieldType1, type SearchCustomFieldType1Exists, type SearchCustomFieldType1Value, type SearchCustomFieldType2, type SearchCustomFieldType2Exists, type SearchCustomFieldType2Value, type SearchCustomFieldType3, type SearchCustomFieldType3Exists, type SearchCustomFieldType3Range, type SearchCustomFieldType3Value, type SearchCustomFieldType4, type SearchCustomFieldType4Exists, type SearchCustomFieldType4Range, type SearchCustomFieldType5, type SearchCustomFieldType5Exists, type SearchCustomFieldType5Value, type SearchCustomObjectRecordsDto, type SearchDND, type SearchDNDExists, type SearchDNDValue, type SearchDateAdded, type SearchDateAddedExists, type SearchDateAddedRange, type SearchDateUpdated, type SearchDateUpdatedExists, type SearchDateUpdatedRange, type SearchEmail, type SearchEmailExists, type SearchEmailValue, type SearchFilter, type SearchFilterConfig, SearchFilterOpporators, type SearchFinishedWorkflows, type SearchFinishedWorkflowsExists, type SearchFinishedWorkflowsValue, type SearchFirstNameLower, type SearchFirstNameLowerExists, type SearchFirstNameLowerValue, type SearchFollowers, type SearchFollowersExists, type SearchFollowersValue, type SearchIsValidWhatsapp, type SearchIsValidWhatsappExists, type SearchIsValidWhatsappValue, type SearchLastAppointment, type SearchLastAppointmentExists, type SearchLastAppointmentRange, type SearchLastEmailClickedDate, type SearchLastEmailClickedDateExists, type SearchLastEmailClickedDateRange, type SearchLastEmailOpenedDate, type SearchLastEmailOpenedDateExists, type SearchLastEmailOpenedDateRange, type SearchLastNameLower, type SearchLastNameLowerExists, type SearchLastNameLowerValue, type SearchOpportunity, type SearchOpportunityStatus, type SearchOpportunityStatusExists, type SearchOpportunityStatusValue, type SearchPhone, type SearchPhoneExists, type SearchPhoneValue, type SearchPipelineId, type SearchPipelineIdExists, type SearchPipelineIdValue, type SearchPipelineStageId, type SearchPipelineStageIdExists, type SearchPipelineStageIdValue, type SearchPostalCode, type SearchPostalCodeExists, type SearchPostalCodeValue, type SearchSort, type SearchSource, type SearchSourceExists, type SearchSourceValue, type SearchState, type SearchStateExists, type SearchStateValue, type SearchTags, type SearchTagsExists, type SearchTagsValue, type SearchTimezone, type SearchTimezoneExists, type SearchTimezoneValue, type SearchUsersResponse, type SearchValidEmail, type SearchValidEmailExists, type SearchValidEmailValue, type SearchWebsite, type SearchWebsiteExists, type SearchWebsiteValue, type SendConversationMessageResponse, type SendInvoiceDto, type SendInvoiceResponse, type ShareType, type Snapshot, type SnapshotAssetsStatus, type SnapshotAssetsStatusResponse, type SnapshotShareLinkDto, type SnapshotShareLinkResponse, type SnapshotStatus, type SnapshotStatusResponse, type SnapshotStatusSearchParams, SnapshotsClient, type SubscriptionAutoPayment, type SubscriptionCoupon, type SubscriptionData, type SubscriptionDetailsReponse, type SubscriptionRecurringProduct, type SubscriptionSchedule, type SubscriptionSearchParams, type SubscriptionSnapshot, type Survey, type SurveyContactSessionIds, type SurveyEventData, type SurveyPageDetails, type SurveySearchParams, type SurveySubmission, type SurveySubmissionSearchParams, type SurveySubmissionsMeta, SurveysClient, type Text2PayInvoice, type Text2PayInvoiceDto, type Text2PayResponse, type TotalInvoiceSummary, type TransactionChargeSnapshot, type TransactionData, type TransactionDetailsResponse, type TransactionMethods, type TransactionPaymentProvider, type TransactionQboDetails, type TransactionSearchParams, type USBankAccount, type UpdateBlockSlotDto, type UpdateBusinessDto, type UpdateCalendarDto, type UpdateCalendarGroupDto, type UpdateCalendarGroupStatusResponse, type UpdateCalendarResourceDto, type UpdateContactDto, type UpdateContactResponse, type UpdateContactTaskDto, type UpdateConversationDto, type UpdateCustomFieldDto, type UpdateCustomFieldFolderDto, type UpdateCustomMenuDto, type UpdateCustomMenuResponse, type UpdateCustomObjectDto, type UpdateCustomObjectRecordDto, type UpdateEmailTemplateDto, type UpdateEmailTemplateResponse, type UpdateFunnelRedirectDto, type UpdateInvoiceDto, type UpdateInvoiceResponse, type UpdateInvoiceScheduleDto, type UpdateInvoiceTemplateDto, type UpdateLinkDto, type UpdateLocationCustomFieldDto, type UpdateLocationDto, type UpdatePostDto, type UpdatePostResponse, type UpdateUserDto, type UploadFileDto, type UploadFileResponse, type UpsertContactResponse, type User, type UserPermissions, type UserRole, type UserRoleDetails, type UserScope, type UserSearchParams, type UserType, UsersClient, type ValidateCalendarGroupSlugDto, type ValidateCalendarGroupSlugResponse, type VoidInvoiceResponse, type WhiteListProviderType, type Workflow, WorkflowsClient };

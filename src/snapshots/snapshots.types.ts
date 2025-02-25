@@ -8,7 +8,11 @@ export type ListSnapshotsResponse = {
   snapshots?: Snapshot[] /** The list of snapshots */;
 };
 
-type ShareType = 'link' | 'permanent_link' | 'agency_link' | 'location_link';
+export type ShareType =
+  | 'link'
+  | 'permanent_link'
+  | 'agency_link'
+  | 'location_link';
 
 export type SnapshotShareLinkDto = {
   snapshot_id: string /** id for snapshot to be shared */;
