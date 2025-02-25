@@ -1,4 +1,4 @@
-import { GhlClient } from 'src/ghl.client';
+import { GhlClient } from '../ghl.client';
 import {
   CreateOpportunityDto,
   OpportunityResponse,
@@ -13,7 +13,7 @@ import {
   AddOpportunityFollowersResponse,
   RemoveOpportunityFollowersResponse,
 } from './opportunities.types';
-import { SuccededDeleteResponse } from 'src/common.types';
+import { SuccededDeleteResponse } from '../common.types';
 
 export class OpportunitiesClient extends GhlClient {
   constructor(accessToken: string) {

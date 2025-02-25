@@ -1,4 +1,4 @@
-import { GhlClient } from 'src/ghl.client';
+import { GhlClient } from '../ghl.client';
 import {
   CreateLocationDto,
   CreateUpdateLocationResponse,
@@ -24,7 +24,7 @@ import {
   ListLocationTasksResponse,
   LocationTimeZonesResponse,
 } from './locations.types';
-import { SuccededDeleteResponse } from 'src/common.types';
+import { SuccededDeleteResponse } from '../common.types';
 
 export class LocationsClient extends GhlClient {
   constructor(accessToken: string) {

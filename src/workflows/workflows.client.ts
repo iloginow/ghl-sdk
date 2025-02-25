@@ -1,4 +1,4 @@
-import { GhlClient } from 'src/ghl.client';
+import { GhlClient } from '../ghl.client';
 import { ListWorkflowsResponse } from './workflows.types';
 
 export class WorkflowsClient extends GhlClient {

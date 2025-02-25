@@ -1,4 +1,4 @@
-import { FieldType } from 'src/common.types';
+import { FieldType } from '../common.types';
 
 export type Labels = {
   singular: string;

@@ -1,4 +1,4 @@
-import { GhlClient } from 'src/ghl.client';
+import { GhlClient } from '../ghl.client';
 import {
   ConversationActionResponse,
   ConversationCancelScheduledResponse,
@@ -20,7 +20,7 @@ import {
   SendConversationMessageResponse,
   UpdateConversationDto,
 } from './conversations.types';
-import { SuccessDeleteResponse } from 'src/common.types';
+import { SuccessDeleteResponse } from '../common.types';
 
 export class ConversationsClient extends GhlClient {
   constructor(accessToken: string) {

@@ -1,4 +1,4 @@
-import { FieldType, FileFormat } from 'src/common.types';
+import { FieldType, FileFormat } from '../common.types';
 
 export type CustomFieldOption = {
   key: string; // Key of the option (Included in Create and Response, excluded in Update)

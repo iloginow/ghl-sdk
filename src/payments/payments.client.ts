@@ -1,4 +1,4 @@
-import { GhlClient } from 'src/ghl.client';
+import { GhlClient } from '../ghl.client';
 import {
   PaymentIntegrationProvider,
   CreateWhiteLabelIntegrationProviderDto,
@@ -20,7 +20,7 @@ import {
   CustomIntegrationProviderConnectDetails,
   DisconnectCustomIntegrationProviderResponse,
 } from './payments.types';
-import { SuccessDeleteResponse } from 'src/common.types';
+import { SuccessDeleteResponse } from '../common.types';
 
 export class PaymentsClient extends GhlClient {
   constructor(accessToken: string) {

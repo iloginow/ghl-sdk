@@ -1,4 +1,4 @@
-import { GhlClient } from 'src/ghl.client';
+import { GhlClient } from '../ghl.client';
 import { CoursePublicExporterPayload } from './courses.types';
 
 export class CoursesClient extends GhlClient {

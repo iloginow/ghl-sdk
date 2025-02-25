@@ -1,14 +1,52 @@
 {
   "name": "ghl-sdk",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "description": "SDK for the Go High Level API in Javascript and Node.js",
+  "keywords": [
+    "ghl",
+    "go",
+    "high",
+    "level",
+    "ads",
+    "sdk",
+    "api",
+    "client",
+    "library",
+    "javascript",
+    "typescript",
+    "es6",
+    "esnext",
+    "types",
+    "declaration",
+    "nodejs",
+    "amd",
+    "requirejs",
+    "umd",
+    "promises",
+    "retry",
+    "axios"
+  ],
+  "author": "AdKong",
+  "maintainers": [
+    "Ilia Loginov <i.loginow.by@gmail.com>"
+  ],
+  "homepage": "https://github.com/adkonghq/ghl-sdk",
+  "bugs": {
+    "url": "https://github.com/adkonghq/ghl-sdk/issues"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/adkonghq/ghl-sdk.git"
+  },
+  "license": "MIT",
+  "main": "dist/main.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsup",
+    "prepublishOnly": "npm run build"
+  },
   "devDependencies": {
     "@types/node": "^22.13.4",
     "@typescript-eslint/eslint-plugin": "^8.24.0",
@@ -17,6 +55,7 @@
     "eslint-config-prettier": "^10.0.1",
     "eslint-plugin-prettier": "^5.2.3",
     "prettier": "^3.5.1",
+    "tsup": "^8.3.6",
     "typescript": "^5.7.3"
   },
   "dependencies": {

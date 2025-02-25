@@ -1,11 +1,11 @@
-import { GhlClient } from 'src/ghl.client';
+import { GhlClient } from '../ghl.client';
 import {
   CreateLinkDto,
   LinkResponse,
   ListLinksResponse,
   UpdateLinkDto,
 } from './links.types';
-import { SuccededDeleteResponse } from 'src/common.types';
+import { SuccededDeleteResponse } from '../common.types';
 
 export class LinksClient extends GhlClient {
   constructor(accessToken: string) {

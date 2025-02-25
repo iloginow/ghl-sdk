@@ -1,4 +1,4 @@
-import { GhlClient } from 'src/ghl.client';
+import { GhlClient } from '../ghl.client';
 import {
   ContactResponse,
   BusinessContactSearchParams,
@@ -27,7 +27,7 @@ import {
   ContactAddFollowersResponse,
   ContactRemoveFollowersResponse,
 } from './contacts.types';
-import { SuccededDeleteResponse } from 'src/common.types';
+import { SuccededDeleteResponse } from '../common.types';
 
 export class ContactsClient extends GhlClient {
   constructor(accessToken: string) {

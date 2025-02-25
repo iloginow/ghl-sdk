@@ -1,21 +1,23 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
+    "moduleResolution": "nodenext",
+    "target": "ESNext",
+    "module": "NodeNext",
+    "noEmit": false,
     "declaration": true,
     "removeComments": true,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "allowSyntheticDefaultImports": true,
-    "target": "ES2021",
     "sourceMap": true,
+    "sourceRoot": "./src",
     "outDir": "./dist",
     "baseUrl": "./",
-    "incremental": true,
+    "incremental": false,
     "skipLibCheck": true,
     "strictNullChecks": false,
     "noImplicitAny": false,
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false
-  }
+  },
+  "include": ["src", "tsup.config.ts"],
+  "exclude": ["node_modules", "**/*.test.ts"]
 }

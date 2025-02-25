@@ -1,11 +1,11 @@
-import { GhlClient } from 'src/ghl.client';
+import { GhlClient } from '../ghl.client';
 import {
   ListMediaFilesResponse,
   MediaFileSearchParams,
   UploadFileDto,
   UploadFileResponse,
 } from './media.types';
-import { SuccessDeleteResponse } from 'src/common.types';
+import { SuccessDeleteResponse } from '../common.types';
 
 export class MediaClient extends GhlClient {
   constructor(accessToken: string) {
