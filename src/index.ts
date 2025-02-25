@@ -7,6 +7,7 @@ import { ContactsClient } from './contacts/contacts.client';
 import { ConversationsClient } from './conversations/conversations.client';
 import { CoursesClient } from './courses/courses.client';
 import { CustomFieldsClient } from './custom-fields/custom-fields.client';
+import { CustomMenusClient } from './custom-menus/custom-menus.client';
 import { EmailsClient } from './emails/emails.client';
 import { FormsClient } from './forms/forms.client';
 import { FunnelsClient } from './funnels/funnels.client';
@@ -35,6 +36,7 @@ export {
   ConversationsClient,
   CoursesClient,
   CustomFieldsClient,
+  CustomMenusClient,
   EmailsClient,
   FormsClient,
   FunnelsClient,
