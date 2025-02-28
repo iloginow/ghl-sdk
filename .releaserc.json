@@ -1,6 +1,6 @@
 {
   "branches": ["master"],
-  "repositoryUrl": "git@github.com:adkonghq/ghl-sdk.git",
+  "repositoryUrl": "https://github.com/adkonghq/ghl-sdk.git",
   "plugins": [
     "@semantic-release/commit-analyzer",
     "@semantic-release/release-notes-generator",
