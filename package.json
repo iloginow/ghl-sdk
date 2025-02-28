@@ -1,7 +1,7 @@
 {
   "name": "ghl-sdk",
   "version": "1.0.0",
-  "description": "SDK for the Go High Level API in Javascript and Node.js",
+  "description": "GoHighLevel SDK",
   "keywords": [
     "ghl",
     "go",
