@@ -48,7 +48,8 @@
   "scripts": {
     "build": "tsup",
     "docs": "typedoc --options typedoc.json",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "release": "semantic-release"
   },
   "devDependencies": {
     "@semantic-release/changelog": "^6.0.3",
