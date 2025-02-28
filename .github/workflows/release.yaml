@@ -29,11 +29,12 @@ jobs:
       - name: Debug NPM Token
         run: |
           echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
-          npm whoami || echo "Failed to authenticate"
+          cat ~/.npmrc || echo "Failed to authenticate"
       - name: Run Semantic Release
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npm run release
   typedoc:
     needs: release
