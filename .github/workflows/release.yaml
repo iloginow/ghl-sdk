@@ -13,12 +13,11 @@ jobs:
         with:
           node-version: latest
           registry-url: "https://registry.npmjs.org/"
-          cache: pnpm
           scope: adkong
       - name: Install Dependencies
-        run: pnpm i
+        run: npm install
       - name: Generate Docs
-        run: pnpm docs
+        run: npm run docs
       - name: Upload Artifact
         uses: actions/upload-pages-artifact@v3
         with:
