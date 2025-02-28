@@ -22,6 +22,8 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: docs
+      - name: Set Git Remote URL
+        run: git remote set-url origin https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/${{ github.repository }}.git
       - name: Run Semantic Release
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
