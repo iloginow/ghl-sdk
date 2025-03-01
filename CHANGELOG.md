@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/adkonghq/ghl-sdk/compare/v1.0.0...v1.0.1) (2025-03-01)
+
+
+### Bug Fixes
+
+* release pipeline ([1cab01f](https://github.com/adkonghq/ghl-sdk/commit/1cab01f9577f79522365418b1c34cd05653f7d29))
+
 # 1.0.0 (2025-02-28)
 
 
