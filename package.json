@@ -2,6 +2,9 @@
   "name": "ghl-sdk",
   "version": "1.0.0",
   "description": "GoHighLevel SDK",
+  "publishConfig": {
+    "access": "public"
+  },
   "keywords": [
     "ghl",
     "go",
@@ -36,7 +39,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/adkonghq/ghl-sdk.git"
+    "url": "git://github.com/adkonghq/ghl-sdk.git"
   },
   "license": "MIT",
   "main": "dist/main.js",
